@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benas Petronis</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Latin+Modern+Roman:wght@400;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Latin Modern Roman', 'Computer Modern', 'Times New Roman', serif;
+            background: #000;
+            color: #e0e0e0;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        #math-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            overflow: hidden;
+        }
+
+        .formula {
+            position: absolute;
+            color: rgba(100, 150, 255, 0.25);
+            pointer-events: none;
+            white-space: nowrap;
+            animation: fadeInOut 10s ease-in-out infinite;
+            font-size: 18px;
+        }
+
+        @keyframes fadeInOut {
+            0% {
+                opacity: 0;
+                transform: translateY(20px) scale(0.8);
+            }
+            15% {
+                opacity: 0.5;
+            }
+            85% {
+                opacity: 0.5;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-20px) scale(1.1);
+            }
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            margin-bottom: 60px;
+            padding-top: 40px;
+            text-align: center;
+        }
+
+        .latex-title {
+            font-size: 2.2rem;
+            font-weight: 400;
+            margin-bottom: 8px;
+            color: #999;
+            font-family: 'Latin Modern Roman', 'Computer Modern', 'Times New Roman', serif;
+        }
+
+        .latex-title .content {
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .latex-author {
+            font-size: 1.4rem;
+            font-weight: 400;
+            margin-bottom: 8px;
+            color: #999;
+        }
+
+        .latex-author .content {
+            color: #e0e0e0;
+        }
+
+        .latex-date {
+            font-size: 1.1rem;
+            font-weight: 400;
+            margin-bottom: 40px;
+            color: #666;
+        }
+
+        .latex-date .content {
+            color: #888;
+            font-style: italic;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 400;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #888;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .intro {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            color: #b0b0b0;
+            text-align: left;
+        }
+
+        .contact-links {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .contact-links a {
+            color: #6b9eff;
+            text-decoration: none;
+            margin-right: 30px;
+            font-weight: 400;
+        }
+
+        .contact-links a:hover {
+            color: #8bb4ff;
+        }
+
+        .skip-link {
+            color: #6b9eff;
+            text-decoration: none;
+            font-size: 0.95rem;
+            margin-bottom: 30px;
+            display: inline-block;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 400;
+            margin: 80px 0 40px 0;
+            color: #fff;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+        }
+
+        .project {
+            margin-bottom: 80px;
+            background: rgba(20, 20, 30, 0.6);
+            padding: 30px;
+            border-radius: 8px;
+            border: 1px solid rgba(100, 150, 255, 0.1);
+            transition: border-color 0.3s;
+        }
+
+        .project:hover {
+            border-color: rgba(100, 150, 255, 0.3);
+        }
+
+        .project h3 {
+            font-size: 1.6rem;
+            font-weight: 400;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .project-meta {
+            color: #6b9eff;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .project-description {
+            color: #b0b0b0;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .tag {
+            background: rgba(107, 158, 255, 0.15);
+            color: #6b9eff;
+            padding: 5px 12px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(107, 158, 255, 0.2);
+        }
+
+        .project-links {
+            margin-top: 20px;
+        }
+
+        .project-links a {
+            color: #6b9eff;
+            text-decoration: none;
+            margin-right: 20px;
+            font-size: 0.95rem;
+        }
+
+        .project-links a:hover {
+            color: #8bb4ff;
+        }
+
+        footer {
+            margin-top: 100px;
+            padding: 40px 0;
+            border-top: 1px solid #333;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .video-placeholder {
+            width: 100%;
+            height: 300px;
+            background: rgba(30, 30, 40, 0.8);
+            border-radius: 6px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #555;
+            border: 1px solid rgba(100, 150, 255, 0.1);
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .project h3 {
+                font-size: 1.3rem;
+            }
+
+            .latex-title {
+                font-size: 1.8rem;
+            }
+
+            .latex-author {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="math-background"></div>
+    
+    <div class="container">
+        <header>
+            <div class="latex-title">
+                \title{<span class="content">Portfolio Website</span>}
+            </div>
+            <div class="latex-author">
+                \author{<span class="content">Benas Petronis</span>}
+            </div>
+            <div class="latex-date">
+                \date{<span class="content">Feb 10, 2026</span>}
+            </div>
+            
+            <a href="#research" class="skip-link">[Skip to research]</a>
+            
+            <p class="subtitle">Self-Taught Pure Mathematician | High School Student | Developer</p>
+            
+            <p class="intro">
+                I'm a high school student with a deep passion for pure mathematics, particularly algebraic topology, 
+                category theory, and number theory. I teach myself advanced mathematical concepts and combine this 
+                theoretical knowledge with practical programming skills to build computational tools and applications 
+                across various domains—from mathematical computation to cybersecurity.
+            </p>
+            
+            <p class="intro">
+                Interested in mathematics, theoretical computer science, or collaborative projects? Let's connect.
+            </p>
+            
+            <div class="contact-links">
+                <a href="https://github.com/Bencode12">github: @Bencode12</a>
+                <a href="mailto:Benjaminas.Petronis@gmail.com">email: Benjaminas.Petronis@gmail.com</a>
+            </div>
+        </header>
+
+        <h2 class="section-title" id="research">Projects & Research</h2>
+
+        <div class="project">
+            <h3>Mathematics Terminal Tool</h3>
+            <p class="project-meta">computational mathematics</p>
+            
+            <div class="video-placeholder">
+                [Terminal-based mathematical computation interface]
+            </div>
+            
+            <p class="project-description">
+                A comprehensive command-line tool for advanced mathematical calculations spanning multiple domains 
+                of pure mathematics. Implements algorithms for number theory (computing $\varphi(n)$, primality testing, 
+                factorization), linear algebra operations (matrix decompositions, eigenvalue computation), calculus 
+                (symbolic differentiation and integration), and abstract algebra (group theory calculations, polynomial 
+                arithmetic over finite fields). Built to support my self-study in pure mathematics with immediate 
+                computational verification of theoretical results.
+            </p>
+            
+            <div class="project-tags">
+                <span class="tag">pure mathematics</span>
+                <span class="tag">number theory</span>
+                <span class="tag">linear algebra</span>
+                <span class="tag">python</span>
+                <span class="tag">terminal</span>
+            </div>
+            
+            <div class="project-links">
+                <a href="https://github.com/Bencode12">[View on GitHub]</a>
+            </div>
+        </div>
+
+        <div class="project">
+            <h3>Chemistry Terminal Tool</h3>
+            <p class="project-meta">computational chemistry</p>
+            
+            <div class="video-placeholder">
+                [Chemical calculations in terminal]
+            </div>
+            
+            <p class="project-description">
+                A terminal-based chemistry computation toolkit for stoichiometric calculations, thermodynamic property 
+                estimation, equilibrium constant computations, and molecular mass calculations. Handles chemical equation 
+                balancing, pH calculations, concentration conversions, and reaction yield predictions. Designed as a 
+                comprehensive computational companion for chemistry coursework and independent study, with an emphasis 
+                on algorithmic precision and extensibility.
+            </p>
+            
+            <div class="project-tags">
+                <span class="tag">chemistry</span>
+                <span class="tag">stoichiometry</span>
+                <span class="tag">thermodynamics</span>
+                <span class="tag">python</span>
+                <span class="tag">terminal</span>
+            </div>
+            
+            <div class="project-links">
+                <a href="https://github.com/Bencode12">[View on GitHub]</a>
+            </div>
+        </div>
+
+        <div class="project">
+            <h3>Sudzinas - Learning Dashboard Platform</h3>
+            <p class="project-meta">web application • <a href="https://sudzinas.pw" style="color: #6b9eff;">sudzinas.pw</a></p>
+            
+            <div class="video-placeholder">
+                [Educational dashboard interface]
+            </div>
+            
+            <p class="project-description">
+                A comprehensive learning management and productivity dashboard designed for students. Features include 
+                task tracking with priority queues, study session analytics, course material organization, and progress 
+                visualization across multiple subjects. Implements spaced repetition algorithms for optimal knowledge 
+                retention and provides data-driven insights into learning patterns. Built with modern web technologies 
+                to create a seamless, responsive experience for managing academic workflows.
+            </p>
+            
+            <div class="project-tags">
+                <span class="tag">web development</span>
+                <span class="tag">education</span>
+                <span class="tag">full-stack</span>
+                <span class="tag">analytics</span>
+                <span class="tag">react</span>
+            </div>
+            
+            <div class="project-links">
+                <a href="https://sudzinas.pw">[Visit Site]</a>
+                <a href="https://sudzoloxas.lovable.app">[Demo Instance]</a>
+            </div>
+        </div>
+
+        <div class="project">
+            <h3>Advanced Calculator</h3>
+            <p class="project-meta">computational tool</p>
+            
+            <div class="video-placeholder">
+                [Calculator interface]
+            </div>
+            
+            <p class="project-description">
+                A feature-rich calculator supporting standard arithmetic, scientific functions, complex number operations, 
+                matrix computations, and symbolic mathematics. Includes expression parsing with proper operator precedence, 
+                variable storage, function definitions, and support for calculus operations. Designed with extensibility 
+                in mind, allowing for custom function definitions and mathematical domain extensions.
+            </p>
+            
+            <div class="project-tags">
+                <span class="tag">mathematics</span>
+                <span class="tag">computation</span>
+                <span class="tag">python</span>
+                <span class="tag">symbolic math</span>
+            </div>
+            
+            <div class="project-links">
+                <a href="https://github.com/Bencode12">[View on GitHub]</a>
+            </div>
+        </div>
+
+        <div class="project">
+            <h3>Trading Learning Platform</h3>
+            <p class="project-meta">financial education</p>
+            
+            <div class="video-placeholder">
+                [Trading platform interface]
+            </div>
+            
+            <p class="project-description">
+                An educational platform for learning trading strategies, market analysis, and financial mathematics. 
+                Provides simulated trading environments with real-time market data, technical analysis tools, and 
+                performance metrics. Implements various trading algorithms and indicators including moving averages, 
+                RSI, MACD, and Bollinger Bands. Designed to teach quantitative finance concepts through hands-on 
+                experimentation with risk-free virtual portfolios.
+            </p>
+            
+            <div class="project-tags">
+                <span class="tag">finance</span>
+                <span class="tag">trading</span>
+                <span class="tag">algorithms</span>
+                <span class="tag">data analysis</span>
+            </div>
+            
+            <div class="project-links">
+                <a href="https://github.com/Bencode12">[View on GitHub]</a>
+            </div>
+        </div>
+
+        <div class="project">
+            <h3>Military Surveillance System</h3>
+            <p class="project-meta">computer vision • security</p>
+            
+            <div class="video-placeholder">
+                [Surveillance system architecture]
+            </div>
+            
+            <p class="project-description">
+                A proof-of-concept surveillance system demonstrating real-time video processing, object detection, 
+                and tracking capabilities. Implements computer vision algorithms for motion detection, facial recognition, 
+                and anomaly detection using modern deep learning frameworks. Features multi-camera coordination, 
+                event logging, and alert systems. Built to explore the intersection of computer vision, distributed 
+                systems, and security applications.
+            </p>
+            
+            <div class="project-tags">
+                <span class="tag">computer vision</span>
+                <span class="tag">deep learning</span>
+                <span class="tag">opencv</span>
+                <span class="tag">python</span>
+                <span class="tag">security</span>
+            </div>
+            
+            <div class="project-links">
+                <a href="https://github.com/Bencode12">[View on GitHub]</a>
+            </div>
+        </div>
+
+        <div class="project">
+            <h3>Penetration Testing Terminal</h3>
+            <p class="project-meta">cybersecurity</p>
+            
+            <div class="video-placeholder">
+                [Pentesting terminal interface]
+            </div>
+            
+            <p class="project-description">
+                A specialized terminal environment for network security assessment and penetration testing. Integrates 
+                various security tools for network scanning (port scanning, service enumeration), vulnerability assessment, 
+                and exploitation frameworks. Includes custom scripts for information gathering, password cracking, and 
+                security auditing. Developed to understand network security principles, ethical hacking methodologies, 
+                and defensive security measures through practical implementation.
+            </p>
+            
+            <div class="project-tags">
+                <span class="tag">cybersecurity</span>
+                <span class="tag">pentesting</span>
+                <span class="tag">networking</span>
+                <span class="tag">python</span>
+                <span class="tag">bash</span>
+            </div>
+            
+            <div class="project-links">
+                <a href="https://github.com/Bencode12">[View on GitHub]</a>
+            </div>
+        </div>
+
+        <h2 class="section-title">Mathematical Interests</h2>
+
+        <div class="project">
+            <h3>Self-Study in Pure Mathematics</h3>
+            <p class="project-meta">ongoing learning</p>
+            
+            <p class="project-description">
+                Independently studying advanced mathematical topics beyond high school curriculum, with primary focus 
+                on algebraic topology (fundamental groups $\pi_1(X)$, homology theory $H_n(X)$, covering spaces), 
+                category theory (functors, natural transformations, universal properties), abstract algebra (group theory, 
+                ring theory, Galois theory $\text{Gal}(K/F)$), and number theory (modular arithmetic, Diophantine equations, 
+                $p$-adic analysis). Working through graduate-level textbooks and implementing computational tools to 
+                verify theoretical understanding.
+            </p>
+            
+            <div class="project-tags">
+                <span class="tag">algebraic topology</span>
+                <span class="tag">category theory</span>
+                <span class="tag">number theory</span>
+                <span class="tag">abstract algebra</span>
+            </div>
+        </div>
+
+        <footer>
+            <p>
+                High School Student • Self-Taught Pure Mathematician • Software Developer<br>
+                <a href="https://github.com/Bencode12" style="color: #6b9eff; text-decoration: none;">GitHub: @Bencode12</a> · 
+                email: your.email [at] example (dot) com · 
+                <a href="#" style="color: #6b9eff; text-decoration: none;">Back to top</a>
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // Pure mathematics formulas in LaTeX
+        const mathFormulas = [
+            // Algebraic Topology
+            "$H_n(X) = \\mathbb{Z}^{\\beta_n} \\oplus T_n$",
+            "$\\pi_1(S^1) \\cong \\mathbb{Z}$",
+            "$\\chi(X) = \\sum_{i} (-1)^i \\dim H_i(X)$",
+            "$\\partial \\circ \\partial = 0$",
+            "$H^*(X; \\mathbb{R}) \\cong \\Lambda(x_1,\\ldots,x_n)$",
+            "$f_* : \\pi_1(X,x_0) \\to \\pi_1(Y,f(x_0))$",
+            "$\\beta_n = \\text{rank}(H_n(X))$",
+            "$[S^n, S^n] \\cong \\mathbb{Z}$",
+            "$H_n(X \\times Y) \\cong \\bigoplus_{p+q=n} H_p(X) \\otimes H_q(Y)$",
+            
+            // Number Theory
+            "$\\zeta(s) = \\sum_{n=1}^{\\infty} \\frac{1}{n^s}$",
+            "$\\sum_{d|n} \\varphi(d) = n$",
+            "$p \\equiv 1 \\pmod{4} \\implies p = a^2 + b^2$",
+            "$L(s,\\chi) = \\sum_{n=1}^{\\infty} \\frac{\\chi(n)}{n^s}$",
+            "$a^{p-1} \\equiv 1 \\pmod{p}$",
+            "$\\#E(\\mathbb{F}_p) = p + 1 - a_p$",
+            "$\\left(\\frac{a}{p}\\right) \\equiv a^{\\frac{p-1}{2}} \\pmod{p}$",
+            "$\\prod_p \\frac{p}{p-1} = \\frac{\\zeta(s)}{\\zeta(s-1)}$",
+            "$\\pi(x) \\sim \\frac{x}{\\log x}$",
+            "$\\sum_{n \\leq x} \\mu(n) = o(x)$",
+            
+            // Abstract Algebra
+            "$G/N \\cong G' \\implies N = \\ker(\\varphi)$",
+            "$[G:H] = \\frac{|G|}{|H|}$",
+            "$\\langle g \\rangle \\leq G, \\text{ord}(g) \\mid |G|$",
+            "$R[x]/(p(x)) \\text{ is a field } \\iff p \\text{ irreducible}$",
+            "$\\text{Aut}(G) \\leq S_n$",
+            "$G \\times H / N \\times K \\cong (G/N) \\times (H/K)$",
+            "$\\text{Gal}(\\mathbb{Q}(\\sqrt{d})/\\mathbb{Q}) \\cong \\mathbb{Z}_2$",
+            "$|\\text{Gal}(K/F)| = [K:F]$",
+            
+            // Category Theory
+            "$\\text{Hom}(A \\otimes B, C) \\cong \\text{Hom}(A, \\text{Hom}(B,C))$",
+            "$F \\dashv G : \\mathcal{C} \\rightleftarrows \\mathcal{D}$",
+            "$\\text{colim } F \\cong \\lim G^{\\text{op}}$",
+            "$\\text{Nat}(F,G) : \\mathcal{C} \\to \\text{Set}$",
+            "$\\mathcal{C}^{\\text{op}} \\times \\mathcal{C} \\to \\text{Set}$",
+            "$\\text{Yoneda: } \\text{Nat}(h_A, F) \\cong F(A)$",
+            
+            // Differential Geometry
+            "$\\nabla_X Y - \\nabla_Y X = [X,Y]$",
+            "$R(X,Y)Z = \\nabla_X\\nabla_Y Z - \\nabla_Y\\nabla_X Z - \\nabla_{[X,Y]}Z$",
+            "$d\\omega = 0 \\implies \\omega = d\\eta \\text{ locally}$",
+            "$\\int_M d\\omega = \\int_{\\partial M} \\omega$",
+            "$\\text{Ric} = \\frac{1}{2}\\text{grad}(R)$",
+            "$\\nabla_X \\nabla_Y - \\nabla_{\\nabla_X Y} = R(X,Y)$",
+            
+            // Complex Analysis
+            "$\\oint_\\gamma f(z)dz = 2\\pi i \\sum \\text{Res}(f,z_k)$",
+            "$f'(z_0) = \\lim_{z \\to z_0} \\frac{f(z)-f(z_0)}{z-z_0}$",
+            "$\\bar{\\partial}f = 0 \\iff f \\text{ holomorphic}$",
+            "$|f(z)| \\leq M \\implies f \\text{ constant}$",
+            "$f(z) = \\sum_{n=0}^\\infty a_n(z-z_0)^n$",
+            
+            // Functional Analysis
+            "$\\langle Tx,y\\rangle = \\langle x,T^*y\\rangle$",
+            "$\\|T\\| = \\sup_{\\|x\\|=1} \\|Tx\\|$",
+            "$\\sigma(T) \\subseteq \\mathbb{C} \\text{ compact}$",
+            "$H = \\overline{\\text{span}\\{e_n\\}}$",
+            "$T = T^* \\implies \\sigma(T) \\subset \\mathbb{R}$",
+            
+            // Logic & Set Theory
+            "$2^{\\aleph_0} = \\mathfrak{c}$",
+            "$\\text{Con}(\\text{ZFC}) \\implies \\text{Con}(\\text{ZFC} + \\neg\\text{CH})$",
+            "$\\omega^\\omega = \\sup\\{\\omega^n : n < \\omega\\}$",
+            "$\\aleph_{\\alpha+1} = 2^{\\aleph_\\alpha}$",
+            "$V = L \\implies \\text{CH}$",
+            
+            // Homological Algebra
+            "$\\text{Ext}^n(M,N) = R^n \\text{Hom}(M,N)$",
+            "$\\text{Tor}_n(M,N) = L_n(M \\otimes N)$",
+            "$0 \\to A \\to B \\to C \\to 0 \\text{ exact}$",
+            "$H_n(C_\\bullet) = \\ker(\\partial_n)/\\text{im}(\\partial_{n+1})$",
+            "$\\text{Hom}(\\bigoplus A_i, B) \\cong \\prod \\text{Hom}(A_i, B)$",
+            
+            // Measure Theory
+            "$\\int_X f d\\mu = \\lim_{n\\to\\infty} \\int_X f_n d\\mu$",
+            "$\\mu(\\bigcup_{i=1}^\\infty E_i) = \\sum_{i=1}^\\infty \\mu(E_i)$",
+            "$L^p(X,\\mu) = \\{f : \\|f\\|_p < \\infty\\}$",
+            "$\\|f\\|_p = \\left(\\int |f|^p d\\mu\\right)^{1/p}$",
+            
+            // Representation Theory
+            "$\\chi_V(g) = \\text{tr}(\\rho(g))$",
+            "$V \\cong \\bigoplus_{\\lambda} V_\\lambda^{\\oplus m_\\lambda}$",
+            "$\\langle \\chi, \\psi \\rangle = \\frac{1}{|G|} \\sum_{g \\in G} \\chi(g)\\overline{\\psi(g)}$",
+            "$\\dim V = \\frac{1}{|G|} \\sum_{g \\in G} |\\chi_V(g)|^2$"
+        ];
+
+        const background = document.getElementById('math-background');
+        const maxFormulas = 20;
+        let activeFormulas = [];
+
+        function createFormula() {
+            if (activeFormulas.length >= maxFormulas) return;
+
+            const formula = document.createElement('div');
+            formula.className = 'formula';
+            const mathText = mathFormulas[Math.floor(Math.random() * mathFormulas.length)];
+            formula.innerHTML = mathText;
+            
+            // Random position
+            formula.style.left = Math.random() * 85 + '%';
+            formula.style.top = Math.random() * 85 + '%';
+            
+            // Random size
+            const fontSize = Math.random() * 10 + 14;
+            formula.style.fontSize = fontSize + 'px';
+            
+            // Random animation delay
+            formula.style.animationDelay = Math.random() * 4 + 's';
+            
+            // Random animation duration
+            formula.style.animationDuration = (Math.random() * 8 + 8) + 's';
+            
+            background.appendChild(formula);
+            
+            // Trigger MathJax to render this specific formula
+            if (window.MathJax && window.MathJax.typesetPromise) {
+                window.MathJax.typesetPromise([formula]).catch((err) => console.log(err));
+            }
+            
+            activeFormulas.push(formula);
+            
+            // Remove after animation completes
+            setTimeout(() => {
+                if (formula.parentNode) {
+                    formula.remove();
+                    activeFormulas = activeFormulas.filter(f => f !== formula);
+                }
+            }, parseFloat(formula.style.animationDuration) * 1000);
+        }
+
+        // Wait for MathJax to load
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                // Create initial batch
+                for (let i = 0; i < maxFormulas; i++) {
+                    setTimeout(() => createFormula(), i * 300);
+                }
+
+                // Continuously add new formulas
+                setInterval(() => {
+                    if (activeFormulas.length < maxFormulas) {
+                        createFormula();
+                    }
+                }, 2000);
+            }, 500);
+        });
+    </script>
+</body>
+</html>
