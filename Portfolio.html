@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Benas Petronis</title>
+    <title>Pure Mathematics Portfolio</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>
@@ -297,7 +297,7 @@
                 \author{<span class="content">Benas Petronis</span>}
             </div>
             <div class="latex-date">
-                \date{<span class="content">Feb 10, 2026</span>}
+                \date{<span class="content" id="current-date"></span>}
             </div>
             
             <a href="#research" class="skip-link">[Skip to research]</a>
@@ -317,7 +317,7 @@
             
             <div class="contact-links">
                 <a href="https://github.com/Bencode12">github: @Bencode12</a>
-                <a href="mailto:Benjaminas.Petronis@gmail.com">email: Benjaminas.Petronis@gmail.com</a>
+                <a href="/cdn-cgi/l/email-protection#f38a9c8681dd969e929a9fb3968b929e839f96dd909c9e">email: your.email [at] example (dot) com</a>
             </div>
         </header>
 
@@ -383,7 +383,7 @@
         </div>
 
         <div class="project">
-            <h3>Sudzinas - Learning Dashboard Platform</h3>
+            <h3>KnowIt AI - Learning Dashboard Platform</h3>
             <p class="project-meta">web application • <a href="https://sudzinas.pw" style="color: #6b9eff;">sudzinas.pw</a></p>
             
             <div class="video-placeholder">
@@ -548,6 +548,71 @@
             </div>
         </div>
 
+        <h2 class="section-title">Research & Proofs</h2>
+
+        <div class="project">
+            <h3>On the Differential Geometry of Ideal Rocket Trajectories</h3>
+            <p class="project-meta">original research • differential geometry • optimal control</p>
+            
+            <div class="video-placeholder">
+                [Riemannian manifold visualization]
+            </div>
+            
+            <p class="project-description">
+                A foundational differential-geometric treatment of ideal rocket trajectories under vacuum operation. 
+                Constructed the rocket phase manifold $(M,g)$—a Riemannian 2-manifold where the Tsiolkovsky delta-v 
+                relation emerges as a geodesic arc-length formula. Proved eight main theorems including: the Arc-Length 
+                Theorem identifying $\Delta v$ with $L_g(\gamma)$, the Geodesic Theorem characterizing constant-thrust 
+                burns as unique geodesics, the Flatness Theorem proving $R \equiv 0$ and deriving global isometry with 
+                Euclidean $\mathbb{R}^2$, and the Conjugate-Point Theorem establishing global optimality. Extended results 
+                to Hamiltonian mechanics on the cotangent bundle, symplectic reduction, and multi-stage rocket optimization 
+                via fiber-bundle splicing. Complete with rigorous proofs and numerical validation across multiple propellant 
+                systems.
+            </p>
+            
+            <div class="project-tags">
+                <span class="tag">differential geometry</span>
+                <span class="tag">Riemannian manifolds</span>
+                <span class="tag">optimal control</span>
+                <span class="tag">aerospace</span>
+                <span class="tag">Hamiltonian mechanics</span>
+            </div>
+            
+            <div class="project-links">
+                <a href="#">[Read Full Paper (PDF)]</a>
+                <a href="#">[LaTeX Source]</a>
+            </div>
+        </div>
+
+        <div class="project">
+            <h3>Determinant Congruence for Sum-Entry Matrices</h3>
+            <p class="project-meta">original proof • linear algebra</p>
+            
+            <div class="video-placeholder">
+                [Matrix visualization]
+            </div>
+            
+            <p class="project-description">
+                Proved that for any $n \times n$ matrix $A$ with entries $A_{ij} = i + j$, the determinant satisfies 
+                $\det(A) \equiv 0 \pmod{n}$ for all $n \geq 3$, and in fact $\det(A) = 0$ exactly. The proof demonstrates 
+                that all columns of $A$ lie in the span of two vectors $u = (1,1,\ldots,1)^T$ and $v = (1,2,\ldots,n)^T$, 
+                establishing linear dependence when $n \geq 3$. Verified the result through row operations on small cases 
+                and generalized using vector space dimension arguments. Includes explicit computations for $n=1,2$ edge 
+                cases where the determinant is non-zero.
+            </p>
+            
+            <div class="project-tags">
+                <span class="tag">linear algebra</span>
+                <span class="tag">matrix theory</span>
+                <span class="tag">number theory</span>
+                <span class="tag">proof techniques</span>
+            </div>
+            
+            <div class="project-links">
+                <a href="#">[Read Full Proof (PDF)]</a>
+            </div>
+        </div>
+
         <footer>
             <p>
                 High School Student • Self-Taught Pure Mathematician • Software Developer<br>
@@ -558,7 +623,13 @@
         </footer>
     </div>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Set current date
+        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        const today = new Date();
+        const dateStr = `${months[today.getMonth()]} ${today.getDate()}, ${today.getFullYear()}`;
+        document.getElementById('current-date').textContent = dateStr;
+
         // Pure mathematics formulas in LaTeX
         const mathFormulas = [
             // Algebraic Topology
@@ -705,8 +776,7 @@
 
                 // Continuously add new formulas
                 setInterval(() => {
-                    if (activeFormulas.length < maxFormulas) {
-                        createFormula();
+                    if (activeFormulas.length < maxFormulas) {                        createFormula();
                     }
                 }, 2000);
             }, 500);
