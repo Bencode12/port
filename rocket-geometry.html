@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rocket Trajectories - Benas Petronis</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Latin+Modern+Roman:wght@400;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Latin Modern Roman', 'Computer Modern', 'Times New Roman', serif;
+            background: #000;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+
+        #math-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            overflow: hidden;
+        }
+
+        .formula {
+            position: absolute;
+            color: rgba(100, 150, 255, 0.15);
+            pointer-events: none;
+            white-space: nowrap;
+            animation: fadeInOut 12s ease-in-out infinite;
+            font-size: 16px;
+        }
+
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 0.3; }
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .back-link {
+            color: #6b9eff;
+            text-decoration: none;
+            font-size: 0.95rem;
+            margin-bottom: 30px;
+            display: inline-block;
+        }
+
+        .back-link:hover {
+            color: #8bb4ff;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 400;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .meta {
+            color: #6b9eff;
+            font-size: 1rem;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 40px;
+        }
+
+        .tag {
+            background: rgba(107, 158, 255, 0.15);
+            color: #6b9eff;
+            padding: 6px 14px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(107, 158, 255, 0.2);
+        }
+
+        .content {
+            background: rgba(20, 20, 30, 0.6);
+            padding: 40px;
+            border-radius: 8px;
+            border: 1px solid rgba(100, 150, 255, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .content h2 {
+            font-size: 1.8rem;
+            font-weight: 400;
+            color: #fff;
+            margin: 30px 0 20px 0;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+        }
+
+        .content h2:first-child {
+            margin-top: 0;
+        }
+
+        .content h3 {
+            font-size: 1.4rem;
+            font-weight: 400;
+            color: #e0e0e0;
+            margin: 25px 0 15px 0;
+        }
+
+        .content p {
+            color: #b0b0b0;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .content ul {
+            margin-left: 30px;
+            margin-bottom: 15px;
+        }
+
+        .content li {
+            color: #b0b0b0;
+            margin-bottom: 10px;
+        }
+
+        .highlight {
+            background: rgba(107, 158, 255, 0.1);
+            padding: 20px;
+            border-left: 3px solid #6b9eff;
+            margin: 20px 0;
+        }
+
+        .links {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .links a {
+            color: #6b9eff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border: 1px solid #6b9eff;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .links a:hover {
+            background: rgba(107, 158, 255, 0.1);
+            border-color: #8bb4ff;
+        }
+    </style>
+</head>
+<body>
+    <div id="math-background"></div>
+    
+    <div class="container">
+        <a href="index.html" class="back-link">← Back to portfolio</a>
+
+        <h1>On the Differential Geometry of Ideal Rocket Trajectories</h1>
+        <p class="meta">Original Research • Differential Geometry • Optimal Control</p>
+
+        <div class="tags">
+            <span class="tag">differential geometry</span>
+            <span class="tag">Riemannian manifolds</span>
+            <span class="tag">optimal control</span>
+            <span class="tag">aerospace</span>
+            <span class="tag">Hamiltonian mechanics</span>
+        </div>
+
+        <div class="content">
+            <h2>Abstract</h2>
+            <p>
+                A foundational differential-geometric treatment of ideal rocket trajectories under vacuum operation. 
+                We construct the rocket phase manifold $(M,g)$—a Riemannian 2-manifold on which the celebrated 
+                Tsiolkovsky delta-v relation emerges as a geodesic arc-length formula.
+            </p>
+
+            <div class="highlight">
+                <p><strong>Key Result:</strong> The Tsiolkovsky equation $\Delta v = v_e \ln(m_0/m_f)$ is not merely 
+                an algebraic identity, but the arc-length of a geodesic on a flat Riemannian manifold.</p>
+            </div>
+
+            <h2>Main Theorems</h2>
+            
+            <h3>R1. Arc-Length Theorem</h3>
+            <p>
+                The Tsiolkovsky $\Delta v$ formula is the arc-length of a geodesic in the rocket phase manifold $(M,g)$.
+                For any curve $\gamma(s) = (\varepsilon(s), v(s))$ with $\dot{v} \equiv 0$:
+            </p>
+            <p style="text-align: center;">
+                $L_g(\gamma) = v_e \ln\frac{1}{\varepsilon_1} = \Delta v$
+            </p>
+
+            <h3>R2. Geodesic Theorem</h3>
+            <p>
+                Constant-thrust burns are the unique geodesics of $(M,g)$. The geodesic equations yield:
+            </p>
+            <p style="text-align: center;">
+                $\varepsilon(t) = \varepsilon_0 e^{\alpha t}, \quad v(t) = v_0 - v_e \alpha t$
+            </p>
+
+            <h3>R3. Flatness Theorem</h3>
+            <p>
+                The Riemann curvature tensor vanishes identically: $R \equiv 0$. The manifold $(M,g)$ is globally 
+                flat and isometric to Euclidean $\mathbb{R}^2$ via the log-coordinate map.
+            </p>
+
+            <h3>R4. Conjugate-Point Theorem</h3>
+            <p>
+                No geodesic has conjugate points, implying every constant-thrust burn is globally optimal. 
+                This gives a rigorous geometric foundation for the primer-vector theorem.
+            </p>
+
+            <h3>R5. Lyapunov Stability Theorem</h3>
+            <p>
+                Reference geodesics are exponentially stable under bounded mass-flow perturbations, with the 
+                squared Riemannian distance serving as a natural Lyapunov function.
+            </p>
+
+            <h3>R6-R8. Advanced Results</h3>
+            <ul>
+                <li><strong>Hamiltonian Equivalence:</strong> Geodesics are Hamiltonian trajectories on $(T^*M, \omega, H)$</li>
+                <li><strong>Symplectic Reduction:</strong> For SO(2)-symmetric missions, the reduced space preserves structure</li>
+                <li><strong>Staging Optimality:</strong> Multi-stage optimization via fiber-bundle splicing</li>
+            </ul>
+
+            <h2>Significance</h2>
+            <p>
+                This framework transforms rocket propulsion from algebraic formulas to intrinsic geometry. The flatness 
+                of $(M,g)$ explains why constant-thrust burns are globally optimal—a property that follows from the 
+                geometric structure rather than variational calculus alone.
+            </p>
+
+            <h2>Methods & Validation</h2>
+            <p>
+                The paper includes:
+            </p>
+            <ul>
+                <li>Complete proofs of all eight main theorems from first principles</li>
+                <li>Numerical validation across liquid-bipropellant, hybrid, and solid systems</li>
+                <li>Comparison with classical primer-vector theory</li>
+                <li>Extension to multi-stage vehicles with heterogeneous propellants</li>
+            </ul>
+        </div>
+
+        <div class="links">
+            <a href="#">Download Full Paper (PDF)</a>
+            <a href="#">View LaTeX Source</a>
+            <a href="https://github.com/Bencode12">GitHub Repository</a>
+        </div>
+    </div>
+
+    <script>
+        // Simplified background formulas for project page
+        const mathFormulas = [
+            "$\\nabla_X Y - \\nabla_Y X = [X,Y]$",
+            "$R(X,Y)Z = \\nabla_X\\nabla_Y Z - \\nabla_Y\\nabla_X Z$",
+            "$\\int_M d\\omega = \\int_{\\partial M} \\omega$",
+            "$L_g(\\gamma) = v_e \\ln\\frac{1}{\\varepsilon_1}$",
+            "$\\Delta v = v_e \\ln\\frac{m_0}{m_f}$",
+        ];
+
+        const background = document.getElementById('math-background');
+        const maxFormulas = 8;
+
+        function createFormula() {
+            const formula = document.createElement('div');
+            formula.className = 'formula';
+            formula.innerHTML = mathFormulas[Math.floor(Math.random() * mathFormulas.length)];
+            
+            formula.style.left = Math.random() * 90 + '%';
+            formula.style.top = Math.random() * 90 + '%';
+            formula.style.fontSize = (Math.random() * 8 + 14) + 'px';
+            formula.style.animationDelay = Math.random() * 6 + 's';
+            
+            background.appendChild(formula);
+            
+            if (window.MathJax && window.MathJax.typesetPromise) {
+                window.MathJax.typesetPromise([formula]).catch((err) => console.log(err));
+            }
+        }
+
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                for (let i = 0; i < maxFormulas; i++) {
+                    createFormula();
+                }
+            }, 500);
+        });
+    </script>
+</body>
+</html>
