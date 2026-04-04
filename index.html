@@ -90,6 +90,7 @@
             font-weight: 400;
             margin-bottom: 8px;
             color: #999;
+            font-family: 'Latin Modern Roman', 'Computer Modern', 'Times New Roman', serif;
         }
 
         .latex-title .content {
@@ -118,6 +119,13 @@
         .latex-date .content {
             color: #888;
             font-style: italic;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 400;
+            margin-bottom: 10px;
+            color: #fff;
         }
 
         .subtitle {
@@ -168,149 +176,208 @@
             padding-bottom: 10px;
         }
 
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 30px;
-            margin-bottom: 60px;
-        }
-
-        .project-card {
+        .project {
+            margin-bottom: 80px;
             background: rgba(20, 20, 30, 0.6);
             padding: 30px;
             border-radius: 8px;
             border: 1px solid rgba(100, 150, 255, 0.1);
-            transition: all 0.3s;
-            cursor: pointer;
-            text-decoration: none;
-            color: inherit;
-            display: block;
+            transition: border-color 0.3s;
         }
 
-        .project-card:hover {
-            border-color: rgba(100, 150, 255, 0.4);
-            transform: translateY(-5px);
+        .project:hover {
+            border-color: rgba(100, 150, 255, 0.3);
         }
 
-        .project-card h3 {
-            font-size: 1.3rem;
+        .project h3 {
+            font-size: 1.6rem;
             font-weight: 400;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             color: #fff;
         }
 
-        .project-card .meta {
+        .project-meta {
             color: #6b9eff;
-            font-size: 0.85rem;
-            margin-bottom: 15px;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
             font-style: italic;
+        }
+
+        .project-description {
+            color: #b0b0b0;
+            line-height: 1.8;
+            margin-bottom: 20px;
         }
 
         .project-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 15px;
+            gap: 10px;
+            margin-top: 20px;
         }
 
         .tag {
             background: rgba(107, 158, 255, 0.15);
             color: #6b9eff;
-            padding: 4px 10px;
+            padding: 5px 12px;
             border-radius: 4px;
-            font-size: 0.75rem;
+            font-size: 0.85rem;
             border: 1px solid rgba(107, 158, 255, 0.2);
         }
 
-        .interests-carousel {
-            position: relative;
-            overflow: hidden;
-            margin-bottom: 60px;
+        .project-links {
+            margin-top: 20px;
         }
 
-        .carousel-container {
-            display: flex;
-            transition: transform 0.3s ease;
-            touch-action: pan-y;
-            cursor: grab;
+        .project-links a {
+            color: #6b9eff;
+            text-decoration: none;
+            margin-right: 20px;
+            font-size: 0.95rem;
         }
 
-        .carousel-container:active {
-            cursor: grabbing;
+        .project-links a:hover {
+            color: #8bb4ff;
         }
 
-        .carousel-slide {
-            min-width: 100%;
-            padding: 40px;
+        .technologies-section {
+            margin: 60px 0;
             background: rgba(20, 20, 30, 0.6);
+            padding: 40px;
             border-radius: 8px;
             border: 1px solid rgba(100, 150, 255, 0.1);
         }
 
-        .carousel-slide h3 {
-            font-size: 1.5rem;
-            color: #fff;
+        .tech-category {
+            margin-bottom: 40px;
+        }
+
+        .tech-category:last-child {
+            margin-bottom: 0;
+        }
+
+        .tech-category h3 {
+            color: #6b9eff;
+            font-size: 1.3rem;
             margin-bottom: 20px;
+            font-weight: 400;
         }
 
-        .carousel-slide p {
-            color: #b0b0b0;
-            line-height: 1.8;
-            margin-bottom: 15px;
-        }
-
-        .carousel-indicators {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 15px;
             margin-top: 20px;
         }
 
-        .indicator {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: rgba(107, 158, 255, 0.3);
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        .indicator.active {
-            background: #6b9eff;
-        }
-
-        .swipe-hint {
-            text-align: center;
-            color: #666;
-            font-size: 0.85rem;
-            margin-top: 15px;
-            font-style: italic;
-        }
-
-        .interest-preview {
-            color: #b0b0b0;
-            line-height: 1.8;
-            cursor: pointer;
+        .tech-item {
+            background: linear-gradient(135deg, rgba(107, 158, 255, 0.1) 0%, rgba(107, 158, 255, 0.05) 100%);
+            padding: 18px 20px;
+            border-radius: 8px;
+            color: #6b9eff;
+            font-size: 0.95rem;
+            border: 1px solid rgba(107, 158, 255, 0.2);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
-        }
-
-        .interest-preview.collapsed {
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
             overflow: hidden;
         }
 
-        .read-more {
-            color: #6b9eff;
-            font-size: 0.9rem;
-            cursor: pointer;
-            margin-top: 10px;
-            display: inline-block;
+        .tech-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(107, 158, 255, 0.2), transparent);
+            transition: left 0.5s;
         }
 
-        .read-more:hover {
-            color: #8bb4ff;
+        .tech-item:hover::before {
+            left: 100%;
+        }
+
+        .tech-item:hover {
+            background: rgba(107, 158, 255, 0.2);
+            border-color: rgba(107, 158, 255, 0.5);
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 8px 20px rgba(107, 158, 255, 0.3);
+        }
+
+        .tech-icon {
+            font-size: 1.5rem;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        .technologies-section {
+            margin: 60px 0;
+            background: rgba(20, 20, 30, 0.6);
+            padding: 40px;
+            border-radius: 8px;
+            border: 1px solid rgba(100, 150, 255, 0.1);
+        }
+
+        .tech-category {
+            margin-bottom: 40px;
+        }
+
+        .tech-category:last-child {
+            margin-bottom: 0;
+        }
+
+        .tech-category h3 {
+            color: #6b9eff;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .tech-item {
+            background: linear-gradient(135deg, rgba(107, 158, 255, 0.1) 0%, rgba(107, 158, 255, 0.05) 100%);
+            padding: 18px 20px;
+            border-radius: 8px;
+            color: #6b9eff;
+            font-size: 0.95rem;
+            border: 1px solid rgba(107, 158, 255, 0.2);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tech-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(107, 158, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .tech-item:hover::before {
+            left: 100%;
+        }
+
+        .tech-item:hover {
+            background: rgba(107, 158, 255, 0.2);
+            border-color: rgba(107, 158, 255, 0.5);
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 8px 20px rgba(107, 158, 255, 0.3);
+        }
+
+        .tech-icon {
+            font-size: 1.5rem;
+            margin-right: 10px;
+            vertical-align: middle;
         }
 
         footer {
@@ -321,9 +388,31 @@
             font-size: 0.9rem;
         }
 
+        .video-placeholder {
+            width: 100%;
+            height: 300px;
+            background: rgba(30, 30, 40, 0.8);
+            border-radius: 6px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #555;
+            border: 1px solid rgba(100, 150, 255, 0.1);
+            font-style: italic;
+        }
+
         @media (max-width: 768px) {
-            .project-grid {
-                grid-template-columns: 1fr;
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .project h3 {
+                font-size: 1.3rem;
             }
 
             .latex-title {
@@ -351,277 +440,551 @@
                 \date{<span class="content" id="current-date"></span>}
             </div>
             
-            <a href="#projects" class="skip-link">[Skip to projects]</a>
+            <a href="#research" class="skip-link">[Skip to research]</a>
             
-            <p class="subtitle">Self-Taught Pure Mathematician | High School Student | Founder of Gamma Studios</p>
+            <p class="subtitle">Self-Taught Pure Mathematician | High School Student | Developer</p>
             
             <p class="intro">
-                I'm a high school student with a deep passion for pure mathematics, particularly algebraic topology, 
-                category theory, and number theory. I combine theoretical knowledge with practical programming 
-                to build computational tools across various domains. I also run Gamma Studios, a software development company.
+                I'm a high school student with a deep love for pure mathematics, particularly algebraic topology, 
+                category theory, and number theory. I teach myself advanced mathematical concepts and combine this 
+                theoretical knowledge with practical programming skills to build computational tools and applications 
+                across various domains—from mathematical computation to cybersecurity.
+            </p>
+            
+            <p class="intro">
+                Interested in mathematics, theoretical computer science, or collaborative projects? Let's connect.
             </p>
             
             <div class="contact-links">
                 <a href="https://github.com/Bencode12">github: @Bencode12</a>
-                <a href="mailto:benjaminas.petronis@gmail.com">email: benjaminas.petronis [at] gmail (dot) com</a>
+                <a href="/cdn-cgi/l/email-protection#f38a9c8681dd969e929a9fb3968b929e839f96dd909c9e">email: your.email [at] example (dot) com</a>
             </div>
         </header>
 
-        <h2 class="section-title" id="projects">Projects</h2>
-
-        <div class="project-grid">
-            <a href="https://gamma-solutions-webs-8emk.bolt.host" class="project-card" target="_blank">
-                <h3>Gamma Studios</h3>
-                <p class="meta">software company</p>
-                <div class="project-tags">
-                    <span class="tag">entrepreneurship</span>
-                    <span class="tag">software development</span>
-                    <span class="tag">company</span>
+                    <div class="tech-item"><span class="tech-icon">⚙️</span>Rust</div>
+                    <div class="tech-item"><span class="tech-icon">🦀</span>Assembly (x86/ARM)</div>
+                    <div class="tech-item"><span class="tech-icon">🔩</span>Zig</div>
                 </div>
-            </a>
+            </div>
 
-            <a href="chemistry-tool.html" class="project-card">
-                <h3>Chemistry Terminal Tool</h3>
-                <p class="meta">computational chemistry</p>
-                <div class="project-tags">
-                    <span class="tag">stoichiometry</span>
-                    <span class="tag">thermodynamics</span>
-                    <span class="tag">python</span>
+            <div class="tech-category">
+                <h3>🌐 Web Technologies</h3>
+                <div class="tech-grid">
+                    <div class="tech-item"><span class="tech-icon">🌍</span>HTML5 & CSS3</div>
+                    <div class="tech-item"><span class="tech-icon">⚡</span>JavaScript (ES6+)</div>
+                    <div class="tech-item"><span class="tech-icon">🎨</span>PHP</div>
+                    <div class="tech-item"><span class="tech-icon">💾</span>SQL</div>
                 </div>
-            </a>
+            </div>
 
-            <a href="trading-platform.html" class="project-card">
-                <h3>Trading Platform</h3>
-                <p class="meta">financial education</p>
-                <div class="project-tags">
-                    <span class="tag">finance</span>
-                    <span class="tag">algorithms</span>
-                    <span class="tag">analysis</span>
+            <div class="tech-category">
+                <h3>📊 Scientific Computing</h3>
+                <div class="tech-grid">
+                    <div class="tech-item"><span class="tech-icon">🐍</span>Python</div>
+                    <div class="tech-item"><span class="tech-icon">📈</span>MATLAB</div>
+                    <div class="tech-item"><span class="tech-icon">🔢</span>GNU Octave</div>
+                    <div class="tech-item"><span class="tech-icon">📉</span>R</div>
+                    <div class="tech-item"><span class="tech-icon">🔬</span>Spyder IDE</div>
                 </div>
-            </a>
+            </div>
 
-            <a href="surveillance.html" class="project-card">
-                <h3>Surveillance System</h3>
-                <p class="meta">computer vision</p>
-                <div class="project-tags">
-                    <span class="tag">deep learning</span>
-                    <span class="tag">opencv</span>
-                    <span class="tag">security</span>
+            <div class="tech-category">
+                <h3>☁️ Application Development</h3>
+                <div class="tech-grid">
+                    <div class="tech-item"><span class="tech-icon">☕</span>Java</div>
+                    <div class="tech-item"><span class="tech-icon">🚀</span>Swift</div>
+                    <div class="tech-item"><span class="tech-icon">🤖</span>Kotlin</div>
+                    <div class="tech-item"><span class="tech-icon">💎</span>Ruby</div>
+                    <div class="tech-item"><span class="tech-icon">🐹</span>Go</div>
+                    <div class="tech-item"><span class="tech-icon">🌙</span>Lua</div>
                 </div>
-            </a>
+            </div>
 
-            <a href="pentesting.html" class="project-card">
-                <h3>Pentesting Terminal</h3>
-                <p class="meta">cybersecurity</p>
-                <div class="project-tags">
-                    <span class="tag">pentesting</span>
-                    <span class="tag">networking</span>
-                    <span class="tag">python</span>
+            <div class="tech-category">
+                <h3>🎯 Design & Engineering Tools</h3>
+                <div class="tech-grid">
+                    <div class="tech-item"><span class="tech-icon">🎨</span>Figma</div>
+                    <div class="tech-item"><span class="tech-icon">🚀</span>OpenRocket</div>
+                    <div class="tech-item"><span class="tech-icon">⚙️</span>Fusion 360</div>
                 </div>
-            </a>
+            </div>
 
-            <a href="rocket-geometry.html" class="project-card">
-                <h3>Rocket Trajectories</h3>
-                <p class="meta">original research</p>
-                <div class="project-tags">
-                    <span class="tag">differential geometry</span>
-                    <span class="tag">optimal control</span>
+            <div class="tech-category">
+                <h3>🧮 Functional & Academic</h3>
+                <div class="tech-grid">
+                    <div class="tech-item"><span class="tech-icon">🦎</span>Caml (OCaml)</div>
+                    <div class="tech-item"><span class="tech-icon">📝</span>YQL</div>
                 </div>
-            </a>
+            </div>
 
-            <a href="reentry-feasibility.html" class="project-card">
-                <h3>Mach-16+ Re-entry</h3>
-                <p class="meta">original research</p>
-                <div class="project-tags">
-                    <span class="tag">aerothermodynamics</span>
-                    <span class="tag">existence proof</span>
+            <div class="tech-category">
+                <h3>🎭 Esoteric & Experimental</h3>
+                <div class="tech-grid">
+                    <div class="tech-item"><span class="tech-icon">0️⃣1️⃣</span>Binary</div>
+                    <div class="tech-item"><span class="tech-icon">🧠</span>Brainfuck</div>
                 </div>
-            </a>
+            </div>
 
-            <a href="matrix-proof.html" class="project-card">
-                <h3>Matrix Determinants</h3>
-                <p class="meta">original proof</p>
-                <div class="project-tags">
-                    <span class="tag">linear algebra</span>
-                    <span class="tag">proofs</span>
+            <div class="tech-category">
+                <h3>🐧 Operating Systems</h3>
+                <div class="tech-grid">
+                    <div class="tech-item"><span class="tech-icon">🐧</span>I use arch btw</div>
                 </div>
-            </a>
+            </div>
         </div>
 
-        <h2 class="section-title">Mathematical Interests</h2>
 
-        <div class="interests-carousel">
-            <div class="carousel-container" id="carousel">
-                <div class="carousel-slide">
-                    <h3>Overview</h3>
-                    <div id="interest-text" class="interest-preview collapsed">
-                        Independently studying advanced mathematical topics beyond high school curriculum, with primary focus 
-                        on algebraic topology (fundamental groups $\pi_1(X)$, homology theory $H_n(X)$, covering spaces), 
-                        category theory (functors, natural transformations, universal properties), abstract algebra (group theory, 
-                        ring theory, Galois theory $\text{Gal}(K/F)$), and number theory (modular arithmetic, Diophantine equations, 
-                        $p$-adic analysis). Working through graduate-level textbooks and implementing computational tools to 
-                        verify theoretical understanding.
-                    </div>
-                    <div class="read-more" id="read-more-btn">Read more →</div>
-                </div>
-
-                <div class="carousel-slide">
-                    <h3>Contributions</h3>
-                    <p>• Developed differential geometric framework for rocket trajectory optimization</p>
-                    <p>• Proved determinant congruence theorems for structured matrices</p>
-                    <p>• Created computational tools for algebraic number theory</p>
-                    <p>• Implemented algorithms for homological algebra computations</p>
-                </div>
-
-                <div class="carousel-slide">
-                    <h3>Technologies</h3>
-                    <p>• <strong>Mathematical Software:</strong> SageMath, Lean4, SymPy, NumPy</p>
-                    <p>• <strong>Visualization:</strong> Matplotlib, Plotly, Manim</p>
-                    <p>• <strong>Typesetting:</strong> LaTeX, TikZ</p>
-                    <p>• <strong>Proof Assistants:</strong> Lean4</p>
-                </div>
-
-                <div class="carousel-slide">
-                    <h3>Knowledge Areas</h3>
-                    <p>• <strong>Algebraic Topology:</strong> Fundamental groups, covering spaces, homology, spectral sequences</p>
-                    <p>• <strong>Category Theory:</strong> Functors, natural transformations, adjunctions, limits</p>
-                    <p>• <strong>Abstract Algebra:</strong> Group theory, ring theory, Galois theory</p>
-                    <p>• <strong>Number Theory:</strong> Modular arithmetic, elliptic curves, $p$-adic analysis</p>
+                    <div class="tech-item"><span class="tech-icon">⚙️</span>Rust</div>
+                    <div class="tech-item"><span class="tech-icon">🦀</span>Assembly (x86/ARM)</div>
+                    <div class="tech-item"><span class="tech-icon">🔩</span>Zig</div>
                 </div>
             </div>
 
-            <div class="carousel-indicators">
-                <div class="indicator active" data-slide="0"></div>
-                <div class="indicator" data-slide="1"></div>
-                <div class="indicator" data-slide="2"></div>
-                <div class="indicator" data-slide="3"></div>
+            <div class="tech-category">
+                <h3>🌐 Web Technologies</h3>
+                <div class="tech-grid">
+                    <div class="tech-item"><span class="tech-icon">🌍</span>HTML5 & CSS3</div>
+                    <div class="tech-item"><span class="tech-icon">⚡</span>JavaScript (ES6+)</div>
+                    <div class="tech-item"><span class="tech-icon">🎨</span>PHP</div>
+                    <div class="tech-item"><span class="tech-icon">💾</span>SQL</div>
+                </div>
             </div>
 
-            <div class="swipe-hint">← Swipe to explore →</div>
+            <div class="tech-category">
+                <h3>📊 Scientific Computing</h3>
+                <div class="tech-grid">
+                    <div class="tech-item"><span class="tech-icon">🐍</span>Python</div>
+                    <div class="tech-item"><span class="tech-icon">📈</span>MATLAB</div>
+                    <div class="tech-item"><span class="tech-icon">🔢</span>GNU Octave</div>
+                    <div class="tech-item"><span class="tech-icon">📉</span>R</div>
+                    <div class="tech-item"><span class="tech-icon">🔬</span>Spyder IDE</div>
+                </div>
+            </div>
+
+            <div class="tech-category">
+                <h3>☁️ Application Development</h3>
+                <div class="tech-grid">
+                    <div class="tech-item"><span class="tech-icon">☕</span>Java</div>
+                    <div class="tech-item"><span class="tech-icon">🚀</span>Swift</div>
+                    <div class="tech-item"><span class="tech-icon">🤖</span>Kotlin</div>
+                    <div class="tech-item"><span class="tech-icon">💎</span>Ruby</div>
+                    <div class="tech-item"><span class="tech-icon">🐹</span>Go</div>
+                    <div class="tech-item"><span class="tech-icon">🌙</span>Lua</div>
+                </div>
+            </div>
+
+            <div class="tech-category">
+                <h3>🎯 Design & Engineering Tools</h3>
+                <div class="tech-grid">
+                    <div class="tech-item"><span class="tech-icon">🎨</span>Figma</div>
+                    <div class="tech-item"><span class="tech-icon">��</span>OpenRocket</div>
+                    <div class="tech-item"><span class="tech-icon">⚙️</span>Fusion 360</div>
+                </div>
+            </div>
+
+            <div class="tech-category">
+                <h3>🧮 Functional & Academic</h3>
+                <div class="tech-grid">
+                    <div class="tech-item"><span class="tech-icon">🦎</span>Caml (OCaml)</div>
+                    <div class="tech-item"><span class="tech-icon">📝</span>YQL</div>
+                </div>
+            </div>
+
+            <div class="tech-category">
+                <h3>🎭 Esoteric & Experimental</h3>
+                <div class="tech-grid">
+                    <div class="tech-item"><span class="tech-icon">0️⃣1️⃣</span>Binary</div>
+                    <div class="tech-item"><span class="tech-icon">🧠</span>Brainfuck</div>
+                </div>
+            </div>
+
+            <div class="tech-category">
+                <h3>🐧 Operating Systems</h3>
+                <div class="tech-grid">
+                    <div class="tech-item"><span class="tech-icon">🐧</span>I use arch btw</div>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title" id="research">Projects & Research</h2>
+
+        <div class="project">
+            <h3>Custom Programming Language</h3>
+            <p class="project-meta">programming languages • compiler design</p>
+            
+            <p class="project-description">
+                Designing and implementing a custom programming language from scratch. Features include lexical analysis, 
+                parsing (recursive descent/LL(1)), AST construction, semantic analysis, and code generation (interpreting 
+                or compiling to bytecode/native code). Exploring type systems, memory management strategies, and runtime 
+                optimization. Built with modern compiler tooling and potentially targeting WebAssembly or native binaries.
+            </p>
+            
+            <div class="project-tags">
+                <span class="tag">compiler design</span>
+                <span class="tag">interpreter</span>
+                <span class="tag">language theory</span>
+                <span class="tag">rust</span>
+                <span class="tag">formal grammars</span>
+            </div>
+            
+            <div class="project-links">
+                <a href="custom-language.html">[View Project Page]</a>
+                <a href="https://github.com/Bencode12">[View on GitHub]</a>
+            </div>
+        </div>
+
+
+        <div class="project">
+            <h3>Chemistry Terminal Tool</h3>
+            <p class="project-meta">computational chemistry</p>
+            
+            <div class="video-placeholder">
+                [Chemical calculations in terminal]
+            </div>
+            
+            <p class="project-description">
+                A terminal-based chemistry computation toolkit for stoichiometric calculations, thermodynamic property 
+                estimation, equilibrium constant computations, and molecular mass calculations. Handles chemical equation 
+                balancing, pH calculations, concentration conversions, and reaction yield predictions. Designed as a 
+                comprehensive computational companion for chemistry coursework and independent study, with an emphasis 
+                on algorithmic precision and extensibility.
+            </p>
+            
+            <div class="project-tags">
+                <span class="tag">chemistry</span>
+                <span class="tag">stoichiometry</span>
+                <span class="tag">thermodynamics</span>
+                <span class="tag">python</span>
+                <span class="tag">terminal</span>
+            </div>
+            
+            <div class="project-links">
+                <a href="https://github.com/Bencode12">[View on GitHub]</a>
+            </div>
+        </div>
+
+
+
+
+        <div class="project">
+            <h3>Surveillance System</h3>
+            <p class="project-meta">computer vision • security</p>
+            
+            <div class="video-placeholder">
+                [Surveillance system architecture]
+            </div>
+            
+            <p class="project-description">
+                A proof-of-concept surveillance system demonstrating real-time video processing, object detection, 
+                and tracking capabilities. Implements computer vision algorithms for motion detection, facial recognition, 
+                and anomaly detection using modern deep learning frameworks. Features multi-camera coordination, 
+                event logging, and alert systems. Built to explore the intersection of computer vision, distributed 
+                systems, and security applications.
+            </p>
+            
+            <div class="project-tags">
+                <span class="tag">computer vision</span>
+                <span class="tag">deep learning</span>
+                <span class="tag">opencv</span>
+                <span class="tag">python</span>
+                <span class="tag">security</span>
+            </div>
+            
+            <div class="project-links">
+                <a href="https://github.com/Bencode12">[View on GitHub]</a>
+            </div>
+        </div>
+
+        <div class="project">
+            <h3>Penetration Testing Terminal</h3>
+            <p class="project-meta">cybersecurity</p>
+            
+            <div class="video-placeholder">
+                [Pentesting terminal interface]
+            </div>
+            
+            <p class="project-description">
+                A specialized terminal environment for network security assessment and penetration testing. Integrates 
+                various security tools for network scanning (port scanning, service enumeration), vulnerability assessment, 
+                and exploitation frameworks. Includes custom scripts for information gathering, password cracking, and 
+                security auditing. Developed to understand network security principles, ethical hacking methodologies, 
+                and defensive security measures through practical implementation.
+            </p>
+            
+            <div class="project-tags">
+                <span class="tag">cybersecurity</span>
+                <span class="tag">pentesting</span>
+                <span class="tag">networking</span>
+                <span class="tag">python</span>
+                <span class="tag">bash</span>
+            </div>
+            
+            <div class="project-links">
+                <a href="https://github.com/Bencode12">[View on GitHub]</a>
+            </div>
+        </div>
+
+        <h2 class="section-title" style="display: none;">Mathematical Interests</h2>
+
+
+        <h2 class="section-title">Research & Proofs</h2>
+
+        <div class="project">
+            <h3>On the Differential Geometry of Ideal Rocket Trajectories</h3>
+            <p class="project-meta">original research • differential geometry • optimal control</p>
+            
+            <div class="video-placeholder">
+                [Riemannian manifold visualization]
+            </div>
+            
+            <p class="project-description">
+                A foundational differential-geometric treatment of ideal rocket trajectories under vacuum operation. 
+                Constructed the rocket phase manifold $(M,g)$—a Riemannian 2-manifold where the Tsiolkovsky delta-v 
+                relation emerges as a geodesic arc-length formula. Proved eight main theorems including: the Arc-Length 
+                Theorem identifying $\Delta v$ with $L_g(\gamma)$, the Geodesic Theorem characterizing constant-thrust 
+                burns as unique geodesics, the Flatness Theorem proving $R \equiv 0$ and deriving global isometry with 
+                Euclidean $\mathbb{R}^2$, and the Conjugate-Point Theorem establishing global optimality. Extended results 
+                to Hamiltonian mechanics on the cotangent bundle, symplectic reduction, and multi-stage rocket optimization 
+                via fiber-bundle splicing. Complete with rigorous proofs and numerical validation across multiple propellant 
+                systems.
+            </p>
+            
+            <div class="project-tags">
+                <span class="tag">differential geometry</span>
+                <span class="tag">Riemannian manifolds</span>
+                <span class="tag">optimal control</span>
+                <span class="tag">aerospace</span>
+                <span class="tag">Hamiltonian mechanics</span>
+            </div>
+            
+            <div class="project-links">
+                <a href="#">[Read Full Paper (PDF)]</a>
+                <a href="#">[LaTeX Source]</a>
+            </div>
+        </div>
+
+        <div class="project">
+            <h3>Determinant Congruence for Sum-Entry Matrices</h3>
+            <p class="project-meta">original proof • linear algebra</p>
+            
+            <div class="video-placeholder">
+                [Matrix visualization]
+            </div>
+            
+            <p class="project-description">
+                Proved that for any $n \times n$ matrix $A$ with entries $A_{ij} = i + j$, the determinant satisfies 
+                $\det(A) \equiv 0 \pmod{n}$ for all $n \geq 3$, and in fact $\det(A) = 0$ exactly. The proof demonstrates 
+                that all columns of $A$ lie in the span of two vectors $u = (1,1,\ldots,1)^T$ and $v = (1,2,\ldots,n)^T$, 
+                establishing linear dependence when $n \geq 3$. Verified the result through row operations on small cases 
+                and generalized using vector space dimension arguments. Includes explicit computations for $n=1,2$ edge 
+                cases where the determinant is non-zero.
+            </p>
+            
+            <div class="project-tags">
+                <span class="tag">linear algebra</span>
+                <span class="tag">matrix theory</span>
+                <span class="tag">number theory</span>
+                <span class="tag">proof techniques</span>
+            </div>
+            
+            <div class="project-links">
+                <a href="#">[Read Full Proof (PDF)]</a>
+            </div>
+        </div>
+
+
+        <h2 class="section-title" id="technologies">Technologies & Programming Languages</h2>
+
+        <div class="technologies-section">
+            <p style="color: #b0b0b0; line-height: 1.8; margin-bottom: 30px; font-size: 1.05rem;">
+                Proficient in a diverse range of programming languages, tools, and technologies—from systems programming to web development, 
+                mathematical computation to creative design:
+            </p>
+
+            <div class="tech-category">
+                <h3>⚡ Systems & Low-Level</h3>
+                <div class="tech-grid">
+                    <div class="tech-item"><span class="tech-icon">🔧</span>C</div>
+                    <div class="tech-item"><span class="tech-icon">⚙️</span>Rust</div>
+                    <div class="tech-item"><span class="tech-icon">🦀</span>Assembly (x86/ARM)</div>
+                    <div class="tech-item"><span class="tech-icon">🔩</span>Zig</div>
+                </div>
+            </div>
+
+            <div class="tech-category">
+                <h3>🌐 Web Technologies</h3>
+                <div class="tech-grid">
+                    <div class="tech-item"><span class="tech-icon">🌍</span>HTML5 & CSS3</div>
+                    <div class="tech-item"><span class="tech-icon">⚡</span>JavaScript (ES6+)</div>
+                    <div class="tech-item"><span class="tech-icon">🎨</span>PHP</div>
+                    <div class="tech-item"><span class="tech-icon">💾</span>SQL</div>
+                </div>
+            </div>
+
+            <div class="tech-category">
+                <h3>📊 Scientific Computing</h3>
+                <div class="tech-grid">
+                    <div class="tech-item"><span class="tech-icon">🐍</span>Python</div>
+                    <div class="tech-item"><span class="tech-icon">📈</span>MATLAB</div>
+                    <div class="tech-item"><span class="tech-icon">🔢</span>GNU Octave</div>
+                    <div class="tech-item"><span class="tech-icon">📉</span>R</div>
+                    <div class="tech-item"><span class="tech-icon">🔬</span>Spyder IDE</div>
+                </div>
+            </div>
+
+            <div class="tech-category">
+                <h3>☁️ Application Development</h3>
+                <div class="tech-grid">
+                    <div class="tech-item"><span class="tech-icon">☕</span>Java</div>
+                    <div class="tech-item"><span class="tech-icon">🚀</span>Swift</div>
+                    <div class="tech-item"><span class="tech-icon">🤖</span>Kotlin</div>
+                    <div class="tech-item"><span class="tech-icon">💎</span>Ruby</div>
+                    <div class="tech-item"><span class="tech-icon">🐹</span>Go</div>
+                    <div class="tech-item"><span class="tech-icon">🌙</span>Lua</div>
+                </div>
+            </div>
+
+            <div class="tech-category">
+                <h3>🎯 Design & Engineering Tools</h3>
+                <div class="tech-grid">
+                    <div class="tech-item"><span class="tech-icon">🎨</span>Figma</div>
+                    <div class="tech-item"><span class="tech-icon">🚀</span>OpenRocket</div>
+                    <div class="tech-item"><span class="tech-icon">⚙️</span>Fusion 360</div>
+                </div>
+            </div>
+
+            <div class="tech-category">
+                <h3>🧮 Functional & Academic</h3>
+                <div class="tech-grid">
+                    <div class="tech-item"><span class="tech-icon">��</span>Caml (OCaml)</div>
+                    <div class="tech-item"><span class="tech-icon">📝</span>YQL</div>
+                </div>
+            </div>
+
+            <div class="tech-category">
+                <h3>🎭 Esoteric & Experimental</h3>
+                <div class="tech-grid">
+                    <div class="tech-item"><span class="tech-icon">0️⃣1️⃣</span>Binary</div>
+                    <div class="tech-item"><span class="tech-icon">🧠</span>Brainfuck</div>
+                </div>
+            </div>
+
+            <div class="tech-category">
+                <h3>🐧 Operating Systems</h3>
+                <div class="tech-grid">
+                    <div class="tech-item"><span class="tech-icon">🐧</span>I use arch btw</div>
+                </div>
+            </div>
         </div>
 
         <footer>
             <p>
-                High School Student • Self-Taught Pure Mathematician • Founder of Gamma Studios<br>
+                High School Student • Self-Taught Pure Mathematician • Software Developer<br>
                 <a href="https://github.com/Bencode12" style="color: #6b9eff; text-decoration: none;">GitHub: @Bencode12</a> · 
-                <a href="https://gamma-solutions-webs-8emk.bolt.host" style="color: #6b9eff; text-decoration: none;">Gamma Studios</a> · 
-                email: benjaminas.petronis [at] gmail (dot) com · 
+                email: your.email [at] example (dot) com · 
                 <a href="#" style="color: #6b9eff; text-decoration: none;">Back to top</a>
             </p>
         </footer>
     </div>
 
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-        // Set current date
-        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-        const today = new Date();
-        const dateStr = `${months[today.getMonth()]} ${today.getDate()}, ${today.getFullYear()}`;
-        document.getElementById('current-date').textContent = dateStr;
+        document.addEventListener('DOMContentLoaded', function() {
+            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            const today = new Date();
+            const dateStr = `${months[today.getMonth()]} ${today.getDate()}, ${today.getFullYear()}`;
+            document.getElementById('current-date').textContent = dateStr;
+        });        });
 
-        // Read more functionality
-        const interestText = document.getElementById('interest-text');
-        const readMoreBtn = document.getElementById('read-more-btn');
-        
-        readMoreBtn.addEventListener('click', () => {
-            if (interestText.classList.contains('collapsed')) {
-                interestText.classList.remove('collapsed');
-                readMoreBtn.textContent = 'Read less ←';
-            } else {
-                interestText.classList.add('collapsed');
-                readMoreBtn.textContent = 'Read more →';
-            }
-        });
-
-        // Carousel functionality
-        const carousel = document.getElementById('carousel');
-        const indicators = document.querySelectorAll('.indicator');
-        let currentSlide = 0;
-        let startX = 0;
-        let isDragging = false;
-
-        function goToSlide(index) {
-            currentSlide = index;
-            carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
-            indicators.forEach((ind, i) => {
-                ind.classList.toggle('active', i === currentSlide);
-            });
-        }
-
-        indicators.forEach(indicator => {
-            indicator.addEventListener('click', () => {
-                goToSlide(parseInt(indicator.dataset.slide));
-            });
-        });
-
-        // Touch/swipe support
-        carousel.addEventListener('touchstart', (e) => {
-            startX = e.touches[0].clientX;
-            isDragging = true;
-        });
-
-        carousel.addEventListener('touchmove', (e) => {
-            if (!isDragging) return;
-            const currentX = e.touches[0].clientX;
-            const diff = startX - currentX;
-            
-            if (Math.abs(diff) > 50) {
-                if (diff > 0 && currentSlide < 3) {
-                    goToSlide(currentSlide + 1);
-                } else if (diff < 0 && currentSlide > 0) {
-                    goToSlide(currentSlide - 1);
-                }
-                isDragging = false;
-            }
-        });
-
-        carousel.addEventListener('touchend', () => {
-            isDragging = false;
-        });
-
-        // Mouse drag support
-        carousel.addEventListener('mousedown', (e) => {
-            startX = e.clientX;
-            isDragging = true;
-        });
-
-        carousel.addEventListener('mousemove', (e) => {
-            if (!isDragging) return;
-            const currentX = e.clientX;
-            const diff = startX - currentX;
-            
-            if (Math.abs(diff) > 100) {
-                if (diff > 0 && currentSlide < 3) {
-                    goToSlide(currentSlide + 1);
-                } else if (diff < 0 && currentSlide > 0) {
-                    goToSlide(currentSlide - 1);
-                }
-                isDragging = false;
-            }
-        });
-
-        carousel.addEventListener('mouseup', () => {
-            isDragging = false;
-        });
-
-        carousel.addEventListener('mouseleave', () => {
-            isDragging = false;
-        });
-
-        // Math formulas background
+        // Pure mathematics formulas in LaTeX
         const mathFormulas = [
+            // Algebraic Topology
             "$H_n(X) = \\mathbb{Z}^{\\beta_n} \\oplus T_n$",
             "$\\pi_1(S^1) \\cong \\mathbb{Z}$",
             "$\\chi(X) = \\sum_{i} (-1)^i \\dim H_i(X)$",
             "$\\partial \\circ \\partial = 0$",
+            "$H^*(X; \\mathbb{R}) \\cong \\Lambda(x_1,\\ldots,x_n)$",
+            "$f_* : \\pi_1(X,x_0) \\to \\pi_1(Y,f(x_0))$",
+            "$\\beta_n = \\text{rank}(H_n(X))$",
+            "$[S^n, S^n] \\cong \\mathbb{Z}$",
+            "$H_n(X \\times Y) \\cong \\bigoplus_{p+q=n} H_p(X) \\otimes H_q(Y)$",
+            
+            // Number Theory
             "$\\zeta(s) = \\sum_{n=1}^{\\infty} \\frac{1}{n^s}$",
+            "$\\sum_{d|n} \\varphi(d) = n$",
             "$p \\equiv 1 \\pmod{4} \\implies p = a^2 + b^2$",
-            "$\\text{Hom}(A \\otimes B, C) \\cong \\text{Hom}(A, \\text{Hom}(B,C))$",
-            "$F \\dashv G : \\mathcal{C} \\rightleftarrows \\mathcal{D}$",
-            "$\\nabla_X Y - \\nabla_Y X = [X,Y]$",
-            "$\\int_M d\\omega = \\int_{\\partial M} \\omega$",
+            "$L(s,\\chi) = \\sum_{n=1}^{\\infty} \\frac{\\chi(n)}{n^s}$",
+            "$a^{p-1} \\equiv 1 \\pmod{p}$",
+            "$\\#E(\\mathbb{F}_p) = p + 1 - a_p$",
+            "$\\left(\\frac{a}{p}\\right) \\equiv a^{\\frac{p-1}{2}} \\pmod{p}$",
+            "$\\prod_p \\frac{p}{p-1} = \\frac{\\zeta(s)}{\\zeta(s-1)}$",
+            "$\\pi(x) \\sim \\frac{x}{\\log x}$",
+            "$\\sum_{n \\leq x} \\mu(n) = o(x)$",
+            
+            // Abstract Algebra
             "$G/N \\cong G' \\implies N = \\ker(\\varphi)$",
             "$[G:H] = \\frac{|G|}{|H|}$",
+            "$\\langle g \\rangle \\leq G, \\text{ord}(g) \\mid |G|$",
+            "$R[x]/(p(x)) \\text{ is a field } \\iff p \\text{ irreducible}$",
+            "$\\text{Aut}(G) \\leq S_n$",
+            "$G \\times H / N \\times K \\cong (G/N) \\times (H/K)$",
             "$\\text{Gal}(\\mathbb{Q}(\\sqrt{d})/\\mathbb{Q}) \\cong \\mathbb{Z}_2$",
+            "$|\\text{Gal}(K/F)| = [K:F]$",
+            
+            // Category Theory
+            "$\\text{Hom}(A \\otimes B, C) \\cong \\text{Hom}(A, \\text{Hom}(B,C))$",
+            "$F \\dashv G : \\mathcal{C} \\rightleftarrows \\mathcal{D}$",
+            "$\\text{colim } F \\cong \\lim G^{\\text{op}}$",
+            "$\\text{Nat}(F,G) : \\mathcal{C} \\to \\text{Set}$",
+            "$\\mathcal{C}^{\\text{op}} \\times \\mathcal{C} \\to \\text{Set}$",
+            "$\\text{Yoneda: } \\text{Nat}(h_A, F) \\cong F(A)$",
+            
+            // Differential Geometry
+            "$\\nabla_X Y - \\nabla_Y X = [X,Y]$",
+            "$R(X,Y)Z = \\nabla_X\\nabla_Y Z - \\nabla_Y\\nabla_X Z - \\nabla_{[X,Y]}Z$",
+            "$d\\omega = 0 \\implies \\omega = d\\eta \\text{ locally}$",
+            "$\\int_M d\\omega = \\int_{\\partial M} \\omega$",
+            "$\\text{Ric} = \\frac{1}{2}\\text{grad}(R)$",
+            "$\\nabla_X \\nabla_Y - \\nabla_{\\nabla_X Y} = R(X,Y)$",
+            
+            // Complex Analysis
+            "$\\oint_\\gamma f(z)dz = 2\\pi i \\sum \\text{Res}(f,z_k)$",
+            "$f'(z_0) = \\lim_{z \\to z_0} \\frac{f(z)-f(z_0)}{z-z_0}$",
+            "$\\bar{\\partial}f = 0 \\iff f \\text{ holomorphic}$",
+            "$|f(z)| \\leq M \\implies f \\text{ constant}$",
+            "$f(z) = \\sum_{n=0}^\\infty a_n(z-z_0)^n$",
+            
+            // Functional Analysis
+            "$\\langle Tx,y\\rangle = \\langle x,T^*y\\rangle$",
+            "$\\|T\\| = \\sup_{\\|x\\|=1} \\|Tx\\|$",
+            "$\\sigma(T) \\subseteq \\mathbb{C} \\text{ compact}$",
+            "$H = \\overline{\\text{span}\\{e_n\\}}$",
+            "$T = T^* \\implies \\sigma(T) \\subset \\mathbb{R}$",
+            
+            // Logic & Set Theory
+            "$2^{\\aleph_0} = \\mathfrak{c}$",
+            "$\\text{Con}(\\text{ZFC}) \\implies \\text{Con}(\\text{ZFC} + \\neg\\text{CH})$",
+            "$\\omega^\\omega = \\sup\\{\\omega^n : n < \\omega\\}$",
+            "$\\aleph_{\\alpha+1} = 2^{\\aleph_\\alpha}$",
+            "$V = L \\implies \\text{CH}$",
+            
+            // Homological Algebra
+            "$\\text{Ext}^n(M,N) = R^n \\text{Hom}(M,N)$",
+            "$\\text{Tor}_n(M,N) = L_n(M \\otimes N)$",
+            "$0 \\to A \\to B \\to C \\to 0 \\text{ exact}$",
+            "$H_n(C_\\bullet) = \\ker(\\partial_n)/\\text{im}(\\partial_{n+1})$",
+            "$\\text{Hom}(\\bigoplus A_i, B) \\cong \\prod \\text{Hom}(A_i, B)$",
+            
+            // Measure Theory
+            "$\\int_X f d\\mu = \\lim_{n\\to\\infty} \\int_X f_n d\\mu$",
+            "$\\mu(\\bigcup_{i=1}^\\infty E_i) = \\sum_{i=1}^\\infty \\mu(E_i)$",
+            "$L^p(X,\\mu) = \\{f : \\|f\\|_p < \\infty\\}$",
+            "$\\|f\\|_p = \\left(\\int |f|^p d\\mu\\right)^{1/p}$",
+            
+            // Representation Theory
+            "$\\chi_V(g) = \\text{tr}(\\rho(g))$",
+            "$V \\cong \\bigoplus_{\\lambda} V_\\lambda^{\\oplus m_\\lambda}$",
+            "$\\langle \\chi, \\psi \\rangle = \\frac{1}{|G|} \\sum_{g \\in G} \\chi(g)\\overline{\\psi(g)}$",
+            "$\\dim V = \\frac{1}{|G|} \\sum_{g \\in G} |\\chi_V(g)|^2$"
         ];
 
         const background = document.getElementById('math-background');
@@ -636,20 +999,30 @@
             const mathText = mathFormulas[Math.floor(Math.random() * mathFormulas.length)];
             formula.innerHTML = mathText;
             
+            // Random position
             formula.style.left = Math.random() * 85 + '%';
             formula.style.top = Math.random() * 85 + '%';
-            formula.style.fontSize = (Math.random() * 10 + 14) + 'px';
+            
+            // Random size
+            const fontSize = Math.random() * 10 + 14;
+            formula.style.fontSize = fontSize + 'px';
+            
+            // Random animation delay
             formula.style.animationDelay = Math.random() * 4 + 's';
+            
+            // Random animation duration
             formula.style.animationDuration = (Math.random() * 8 + 8) + 's';
             
             background.appendChild(formula);
             
+            // Trigger MathJax to render this specific formula
             if (window.MathJax && window.MathJax.typesetPromise) {
                 window.MathJax.typesetPromise([formula]).catch((err) => console.log(err));
             }
             
             activeFormulas.push(formula);
             
+            // Remove after animation completes
             setTimeout(() => {
                 if (formula.parentNode) {
                     formula.remove();
@@ -658,11 +1031,21 @@
             }, parseFloat(formula.style.animationDuration) * 1000);
         }
 
+        // Wait for MathJax to load
         window.addEventListener('load', () => {
             setTimeout(() => {
+                // Create initial batch
                 for (let i = 0; i < maxFormulas; i++) {
                     setTimeout(() => createFormula(), i * 300);
                 }
 
+                // Continuously add new formulas
                 setInterval(() => {
-                    if (activeFormulas.length < maxFormulas) {
+                    if (activeFormulas.length < maxFormulas) {                        createFormula();
+                    }
+                }, 2000);
+            }, 500);
+        });
+    </script>
+</body>
+</html>

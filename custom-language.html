@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Programming Language - Benas Petronis</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Latin+Modern+Roman:wght@400;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Latin Modern Roman', 'Computer Modern', 'Times New Roman', serif;
+            background: #000;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+
+        #math-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            overflow: hidden;
+        }
+
+        .formula {
+            position: absolute;
+            color: rgba(100, 150, 255, 0.15);
+            pointer-events: none;
+            white-space: nowrap;
+            animation: fadeInOut 12s ease-in-out infinite;
+            font-size: 16px;
+        }
+
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 0.3; }
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .back-link {
+            color: #6b9eff;
+            text-decoration: none;
+            font-size: 0.95rem;
+            margin-bottom: 30px;
+            display: inline-block;
+        }
+
+        .back-link:hover {
+            color: #8bb4ff;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 400;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .meta {
+            color: #6b9eff;
+            font-size: 1rem;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 40px;
+        }
+
+        .tag {
+            background: rgba(107, 158, 255, 0.15);
+            color: #6b9eff;
+            padding: 6px 14px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(107, 158, 255, 0.2);
+        }
+
+        .content {
+            background: rgba(20, 20, 30, 0.6);
+            padding: 40px;
+            border-radius: 8px;
+            border: 1px solid rgba(100, 150, 255, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .content h2 {
+            font-size: 1.8rem;
+            font-weight: 400;
+            color: #fff;
+            margin: 30px 0 20px 0;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+        }
+
+        .content h2:first-child {
+            margin-top: 0;
+        }
+
+        .content h3 {
+            font-size: 1.4rem;
+            font-weight: 400;
+            color: #e0e0e0;
+            margin: 25px 0 15px 0;
+        }
+
+        .content p {
+            color: #b0b0b0;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .content ul {
+            margin-left: 30px;
+            margin-bottom: 15px;
+        }
+
+        .content li {
+            color: #b0b0b0;
+            margin-bottom: 10px;
+        }
+
+        .highlight {
+            background: rgba(107, 158, 255, 0.1);
+            padding: 20px;
+            border-left: 3px solid #6b9eff;
+            margin: 20px 0;
+        }
+
+        .links {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .links a {
+            color: #6b9eff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border: 1px solid #6b9eff;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .links a:hover {
+            background: rgba(107, 158, 255, 0.1);
+            border-color: #8bb4ff;
+        }
+    </style>
+</head>
+<body>
+    <div id="math-background"></div>
+    
+    <div class="container">
+        <a href="index.html" class="back-link">← Back to portfolio</a>
+
+        <h1>Custom Programming Language</h1>
+        <p class="meta">Programming Languages • Compiler Design</p>
+
+        <div class="tags">
+            <span class="tag">compiler design</span>
+            <span class="tag">interpreter</span>
+            <span class="tag">language theory</span>
+            <span class="tag">rust</span>
+            <span class="tag">formal grammars</span>
+        </div>
+
+        <div class="content">
+            <h2>Overview</h2>
+            <p>
+                Designing and implementing a custom programming language from scratch. This project explores the full 
+                stack of language implementation, from lexical analysis and parsing to code generation and optimization.
+            </p>
+
+            <div class="highlight">
+                <p><strong>Goal:</strong> Create a practical, expressive programming language with modern features 
+                while understanding the theoretical foundations of computation and formal languages.</p>
+            </div>
+
+            <h2>Implementation Phases</h2>
+            
+            <h3>1. Lexical Analysis</h3>
+            <p>
+                Building a lexer/tokenizer that converts source code into a stream of tokens. Handles identifier 
+                recognition, keyword detection, literal parsing (integers, floats, strings), operator tokenization, 
+                and whitespace/comment filtering. Implements finite automata for pattern matching.
+            </p>
+
+            <h3>2. Syntax Analysis (Parsing)</h3>
+            <p>
+                Implementing a recursive descent parser (or LL(1)/LR(1) parser) to construct an Abstract Syntax Tree 
+                (AST) from the token stream. Manages operator precedence, associativity, error recovery, and syntactic 
+                validation. Defines formal grammar using BNF/EBNF notation.
+            </p>
+
+            <h3>3. Semantic Analysis</h3>
+            <p>
+                Performing type checking, scope resolution, symbol table management, and semantic validation. Implements 
+                type inference algorithms, detects semantic errors (type mismatches, undefined variables), and annotates 
+                the AST with type information.
+            </p>
+
+            <h3>4. Intermediate Representation</h3>
+            <p>
+                Transforming the AST into an intermediate representation (IR) for optimization and target-independent 
+                transformations. Explores three-address code, SSA (Static Single Assignment) form, or bytecode 
+                representations.
+            </p>
+
+            <h3>5. Code Generation</h3>
+            <p>
+                Generating target code from the IR. Options include:
+            </p>
+            <ul>
+                <li><strong>Interpreter:</strong> Direct execution of AST or bytecode</li>
+                <li><strong>Bytecode Compiler:</strong> Targeting a virtual machine (JVM, WebAssembly, custom VM)</li>
+                <li><strong>Native Compiler:</strong> Generating machine code (x86-64, ARM assembly)</li>
+                <li><strong>Source-to-Source:</strong> Transpiling to C, Rust, or other high-level languages</li>
+            </ul>
+
+            <h3>6. Optimization (Optional)</h3>
+            <p>
+                Applying compiler optimizations: constant folding, dead code elimination, loop unrolling, inlining, 
+                register allocation, and instruction scheduling. Balances compilation speed with runtime performance.
+            </p>
+
+            <h2>Language Features</h2>
+            <ul>
+                <li>Static/dynamic typing with type inference</li>
+                <li>First-class functions and closures</li>
+                <li>Memory safety with automatic memory management (GC or ownership model)</li>
+                <li>Pattern matching and algebraic data types</li>
+                <li>Metaprogramming capabilities (macros, compile-time evaluation)</li>
+                <li>Concurrency primitives (async/await, actors, or CSP)</li>
+            </ul>
+
+            <h2>Technologies & Tools</h2>
+            <p>
+                Implemented primarily in Rust for safety and performance. Uses parser generator tools (ANTLR, yacc/bison) 
+                or hand-written parsers. Testing with property-based testing frameworks. Build system integration with 
+                Cargo.
+            </p>
+        </div>
+
+        <div class="links">
+            <a href="https://github.com/Bencode12">GitHub Repository</a>
+            <a href="#">View Documentation</a>
+        </div>
+    </div>
+
+    <script>
+        // Background formulas for project page
+        const mathFormulas = [
+            "$S \\to aSb \\mid \\epsilon$",
+            "$L(G) = \\{a^n b^n : n \geq 0\\}$",
+            "$\\Gamma \\vdash e : \\tau$",
+            "$\\text{eval}(e, \\rho) = v$",
+            "$\\lambda x. x + 1$",
+            "$\\text{fix}(f) = f(\\text{fix}(f))$",
+        ];
+
+        const background = document.getElementById('math-background');
+        const maxFormulas = 8;
+
+        function createFormula() {
+            const formula = document.createElement('div');
+            formula.className = 'formula';
+            formula.innerHTML = mathFormulas[Math.floor(Math.random() * mathFormulas.length)];
+            
+            formula.style.left = Math.random() * 90 + '%';
+            formula.style.top = Math.random() * 90 + '%';
+            formula.style.fontSize = (Math.random() * 8 + 14) + 'px';
+            formula.style.animationDelay = Math.random() * 6 + 's';
+            
+            background.appendChild(formula);
+            
+            if (window.MathJax && window.MathJax.typesetPromise) {
+                window.MathJax.typesetPromise([formula]).catch((err) => console.log(err));
+            }
+        }
+
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                for (let i = 0; i < maxFormulas; i++) {
+                    createFormula();
+                }
+            }, 500);
+        });
+    </script>
+</body>
+</html>

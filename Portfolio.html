@@ -240,6 +240,76 @@
             color: #8bb4ff;
         }
 
+        .technologies-section {
+            margin: 60px 0;
+            background: rgba(20, 20, 30, 0.6);
+            padding: 40px;
+            border-radius: 8px;
+            border: 1px solid rgba(100, 150, 255, 0.1);
+        }
+
+        .tech-category {
+            margin-bottom: 40px;
+        }
+
+        .tech-category:last-child {
+            margin-bottom: 0;
+        }
+
+        .tech-category h3 {
+            color: #6b9eff;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .tech-item {
+            background: linear-gradient(135deg, rgba(107, 158, 255, 0.1) 0%, rgba(107, 158, 255, 0.05) 100%);
+            padding: 18px 20px;
+            border-radius: 8px;
+            color: #6b9eff;
+            font-size: 0.95rem;
+            border: 1px solid rgba(107, 158, 255, 0.2);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tech-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(107, 158, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .tech-item:hover::before {
+            left: 100%;
+        }
+
+        .tech-item:hover {
+            background: rgba(107, 158, 255, 0.2);
+            border-color: rgba(107, 158, 255, 0.5);
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 8px 20px rgba(107, 158, 255, 0.3);
+        }
+
+        .tech-icon {
+            font-size: 1.5rem;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
         footer {
             margin-top: 100px;
             padding: 40px 0;
@@ -305,7 +375,7 @@
             <p class="subtitle">Self-Taught Pure Mathematician | High School Student | Developer</p>
             
             <p class="intro">
-                I'm a high school student with a deep passion for pure mathematics, particularly algebraic topology, 
+                I'm a high school student with a deep love for pure mathematics, particularly algebraic topology, 
                 category theory, and number theory. I teach myself advanced mathematical concepts and combine this 
                 theoretical knowledge with practical programming skills to build computational tools and applications 
                 across various domains—from mathematical computation to cybersecurity.
@@ -321,7 +391,116 @@
             </div>
         </header>
 
+        <h2 class="section-title" id="technologies">Technologies & Programming Languages</h2>
+
+        <div class="technologies-section">
+            <p style="color: #b0b0b0; line-height: 1.8; margin-bottom: 30px; font-size: 1.05rem;">
+                Proficient in a diverse range of programming languages, tools, and technologies—from systems programming to web development, 
+                mathematical computation to creative design:
+            </p>
+
+            <div class="tech-category">
+                <h3>⚡ Systems & Low-Level</h3>
+                <div class="tech-grid">
+                    <div class="tech-item"><span class="tech-icon">🔧</span>C</div>
+                    <div class="tech-item"><span class="tech-icon">⚙️</span>Rust</div>
+                    <div class="tech-item"><span class="tech-icon">🦀</span>Assembly (x86/ARM)</div>
+                    <div class="tech-item"><span class="tech-icon">🔩</span>Zig</div>
+                </div>
+            </div>
+
+            <div class="tech-category">
+                <h3>🌐 Web Technologies</h3>
+                <div class="tech-grid">
+                    <div class="tech-item"><span class="tech-icon">🌍</span>HTML5 & CSS3</div>
+                    <div class="tech-item"><span class="tech-icon">⚡</span>JavaScript (ES6+)</div>
+                    <div class="tech-item"><span class="tech-icon">🎨</span>PHP</div>
+                    <div class="tech-item"><span class="tech-icon">💾</span>SQL</div>
+                </div>
+            </div>
+
+            <div class="tech-category">
+                <h3>📊 Scientific Computing</h3>
+                <div class="tech-grid">
+                    <div class="tech-item"><span class="tech-icon">🐍</span>Python</div>
+                    <div class="tech-item"><span class="tech-icon">📈</span>MATLAB</div>
+                    <div class="tech-item"><span class="tech-icon">🔢</span>GNU Octave</div>
+                    <div class="tech-item"><span class="tech-icon">📉</span>R</div>
+                    <div class="tech-item"><span class="tech-icon">🔬</span>Spyder IDE</div>
+                </div>
+            </div>
+
+            <div class="tech-category">
+                <h3>☁️ Application Development</h3>
+                <div class="tech-grid">
+                    <div class="tech-item"><span class="tech-icon">☕</span>Java</div>
+                    <div class="tech-item"><span class="tech-icon">🚀</span>Swift</div>
+                    <div class="tech-item"><span class="tech-icon">🤖</span>Kotlin</div>
+                    <div class="tech-item"><span class="tech-icon">💎</span>Ruby</div>
+                    <div class="tech-item"><span class="tech-icon">🐹</span>Go</div>
+                    <div class="tech-item"><span class="tech-icon">🌙</span>Lua</div>
+                </div>
+            </div>
+
+            <div class="tech-category">
+                <h3>🎯 Design & Engineering Tools</h3>
+                <div class="tech-grid">
+                    <div class="tech-item"><span class="tech-icon">🎨</span>Figma</div>
+                    <div class="tech-item"><span class="tech-icon">🚀</span>OpenRocket</div>
+                    <div class="tech-item"><span class="tech-icon">⚙️</span>Fusion 360</div>
+                </div>
+            </div>
+
+            <div class="tech-category">
+                <h3>🧮 Functional & Academic</h3>
+                <div class="tech-grid">
+                    <div class="tech-item"><span class="tech-icon">🦎</span>Caml (OCaml)</div>
+                    <div class="tech-item"><span class="tech-icon">📝</span>YQL</div>
+                </div>
+            </div>
+
+            <div class="tech-category">
+                <h3>🎭 Esoteric & Experimental</h3>
+                <div class="tech-grid">
+                    <div class="tech-item"><span class="tech-icon">0️⃣1️⃣</span>Binary</div>
+                    <div class="tech-item"><span class="tech-icon">🧠</span>Brainfuck</div>
+                </div>
+            </div>
+
+            <div class="tech-category">
+                <h3>🐧 Operating Systems</h3>
+                <div class="tech-grid">
+                    <div class="tech-item"><span class="tech-icon">🐧</span>Arch Linux</div>
+                </div>
+            </div>
+        </div>
+
         <h2 class="section-title" id="research">Projects & Research</h2>
+
+        <div class="project">
+            <h3>Custom Programming Language</h3>
+            <p class="project-meta">programming languages • compiler design</p>
+            
+            <p class="project-description">
+                Designing and implementing a custom programming language from scratch. Features include lexical analysis, 
+                parsing (recursive descent/LL(1)), AST construction, semantic analysis, and code generation (interpreting 
+                or compiling to bytecode/native code). Exploring type systems, memory management strategies, and runtime 
+                optimization. Built with modern compiler tooling and potentially targeting WebAssembly or native binaries.
+            </p>
+            
+            <div class="project-tags">
+                <span class="tag">compiler design</span>
+                <span class="tag">interpreter</span>
+                <span class="tag">language theory</span>
+                <span class="tag">rust</span>
+                <span class="tag">formal grammars</span>
+            </div>
+            
+            <div class="project-links">
+                <a href="custom-language.html">[View Project Page]</a>
+                <a href="https://github.com/Bencode12">[View on GitHub]</a>
+            </div>
+        </div>
 
         <div class="project">
             <h3>Mathematics Terminal Tool</h3>
@@ -625,10 +804,12 @@
 
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // Set current date
-        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-        const today = new Date();
-        const dateStr = `${months[today.getMonth()]} ${today.getDate()}, ${today.getFullYear()}`;
-        document.getElementById('current-date').textContent = dateStr;
+        document.addEventListener('DOMContentLoaded', function() {
+            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            const today = new Date();
+            const dateStr = `${months[today.getMonth()]} ${today.getDate()}, ${today.getFullYear()}`;
+            document.getElementById('current-date').textContent = dateStr;
+        });
 
         // Pure mathematics formulas in LaTeX
         const mathFormulas = [
