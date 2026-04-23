@@ -1,4 +1,5 @@
 const { build } = require('esbuild');
+const path = require('path');
 
 Promise.all([
   build({
@@ -11,6 +12,9 @@ Promise.all([
     loader: { '.jsx': 'jsx' },
     define: {
       'process.env.NODE_ENV': '"production"'
+    },
+    alias: {
+      '@': path.resolve(__dirname, 'src')
     }
   }),
   build({
@@ -23,6 +27,9 @@ Promise.all([
     loader: { '.jsx': 'jsx' },
     define: {
       'process.env.NODE_ENV': '"production"'
+    },
+    alias: {
+      '@': path.resolve(__dirname, 'src')
     }
   })
 ]).catch(() => process.exit(1));
