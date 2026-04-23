@@ -1,3 +1,4 @@
+import React from 'react';
 import { OrbitingCircles } from "@/registry/magicui/orbiting-circles"
 
 export function OrbitingCirclesDemo() {
