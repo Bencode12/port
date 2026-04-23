@@ -159,9 +159,23 @@ const Icons = {
   ),
 }
 
-// Render the component
-const rootElement = document.getElementById('orbiting-tech-root');
-if (rootElement && typeof ReactDOM !== 'undefined') {
-  const root = ReactDOM.createRoot(rootElement);
-  root.render(React.createElement(OrbitingCirclesDemo));
-}
+// Render the component when DOM is ready
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('OrbitingCircles: DOMContentLoaded fired');
+  const rootElement = document.getElementById('orbiting-tech-root');
+  console.log('OrbitingCircles: rootElement found?', !!rootElement);
+  console.log('OrbitingCircles: ReactDOM available?', typeof ReactDOM !== 'undefined');
+  
+  if (rootElement && typeof ReactDOM !== 'undefined') {
+    console.log('OrbitingCircles: Rendering component...');
+    try {
+      const root = ReactDOM.createRoot(rootElement);
+      root.render(React.createElement(OrbitingCirclesDemo));
+      console.log('OrbitingCircles: Component rendered successfully');
+    } catch (error) {
+      console.error('OrbitingCircles: Error rendering component:', error);
+    }
+  } else {
+    console.error('OrbitingCircles: Cannot render - missing rootElement or ReactDOM');
+  }
+});
