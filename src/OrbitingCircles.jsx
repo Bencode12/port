@@ -1,33 +1,130 @@
 import React from 'react';
-import { OrbitingCircles } from "@/registry/magicui/orbiting-circles"
+
+// Pure CSS Orbiting Circles (no framer-motion dependency)
+const OrbitingCircles = ({ 
+  children,
+  radius = 150,
+  iconSize = 40,
+  speed = 20,
+  reverse = false,
+  path = true
+}) => {
+  const direction = reverse ? -1 : 1;
+  const animationName = `orbit-rotate-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+  const counterAnimationName = `counter-rotate-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+  
+  // Create unique keyframes for this instance
+  const styleSheet = document.styleSheets[0];
+  try {
+    styleSheet.insertRule(`
+      @keyframes ${animationName} {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(${direction * 360}deg); }
+      }
+    `, styleSheet.cssRules.length);
+    
+    styleSheet.insertRule(`
+      @keyframes ${counterAnimationName} {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(${direction * -360}deg); }
+      }
+    `, styleSheet.cssRules.length);
+  } catch (e) {
+    console.warn('Could not insert keyframes');
+  }
+  
+  return (
+    React.createElement('div', {
+      style: {
+        width: `${radius * 2}px`,
+        height: `${radius * 2}px`,
+        position: 'absolute',
+      }
+    },
+      path && React.createElement('svg', {
+        style: {
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%'
+        }
+      },
+        React.createElement('circle', {
+          cx: "50%",
+          cy: "50%",
+          r: radius,
+          fill: "none",
+          stroke: "rgba(107, 158, 255, 0.15)",
+          strokeWidth: "1"
+        })
+      ),
+      React.Children.map(children, (child, index) => {
+        const angle = (index / React.Children.count(children)) * 360;
+        
+        return React.createElement('div', {
+          key: index,
+          style: {
+            position: 'absolute',
+            left: '50%',
+            top: '50%',
+            marginLeft: `-${iconSize / 2}px`,
+            marginTop: `-${iconSize / 2}px`,
+            width: `${iconSize}px`,
+            height: `${iconSize}px`,
+            animation: `${animationName} ${speed}s linear infinite`,
+          }
+        },
+          React.createElement('div', {
+            style: {
+              width: '100%',
+              height: '100%',
+              animation: `${counterAnimationName} ${speed}s linear infinite`,
+            }
+          },
+            React.createElement('div', {
+              style: {
+                transform: `rotate(${angle}deg) translateY(-${radius}px) rotate(-${angle}deg)`,
+              }
+            },
+              child
+            )
+          )
+        );
+      })
+    )
+  );
+};
 
 export function OrbitingCirclesDemo() {
   return (
-    <div style={{
-      position: 'relative',
-      display: 'flex',
-      height: '600px',
-      width: '100%',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-      overflow: 'hidden'
-    }}>
-      <OrbitingCircles iconSize={40}>
-        <Icons.whatsapp />
-        <Icons.notion />
-        <Icons.openai />
-        <Icons.googleDrive />
-        <Icons.whatsapp />
-      </OrbitingCircles>
-      <OrbitingCircles iconSize={30} radius={100} reverse speed={2}>
-        <Icons.whatsapp />
-        <Icons.notion />
-        <Icons.openai />
-        <Icons.googleDrive />
-      </OrbitingCircles>
-    </div>
-  )
+    React.createElement('div', {
+      style: {
+        position: 'relative',
+        display: 'flex',
+        height: '600px',
+        width: '100%',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        overflow: 'hidden'
+      }
+    },
+      React.createElement(OrbitingCircles, { iconSize: 40 },
+        React.createElement(Icons.whatsapp),
+        React.createElement(Icons.notion),
+        React.createElement(Icons.openai),
+        React.createElement(Icons.googleDrive),
+        React.createElement(Icons.whatsapp)
+      ),
+      React.createElement(OrbitingCircles, { iconSize: 30, radius: 100, reverse: true, speed: 2 },
+        React.createElement(Icons.whatsapp),
+        React.createElement(Icons.notion),
+        React.createElement(Icons.openai),
+        React.createElement(Icons.googleDrive)
+      )
+    )
+  );
 }
 
 const Icons = {
