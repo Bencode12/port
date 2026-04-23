@@ -230,6 +230,7 @@ window.ReactDOM = ReactDOM;
 document.addEventListener('DOMContentLoaded', () => {
   const container = document.getElementById('math-viz-root');
   if (container) {
-    ReactDOM.render(React.createElement(MathVisualization), container);
+    const root = ReactDOM.createRoot(container);
+    root.render(React.createElement(MathVisualization));
   }
 });

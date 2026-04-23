@@ -244,7 +244,8 @@ const Icons = {
 }
 
 // Render the component
-const root = document.getElementById('orbiting-tech-root');
-if (root) {
-  ReactDOM.render(<OrbitingCirclesDemo />, root);
+const rootElement = document.getElementById('orbiting-tech-root');
+if (rootElement) {
+  const root = ReactDOM.createRoot(rootElement);
+  root.render(<OrbitingCirclesDemo />);
 }
