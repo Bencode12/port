@@ -26,12 +26,40 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
+        ::selection {
+            background: rgba(107, 158, 255, 0.3);
+            color: #fff;
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(107, 158, 255, 0.3);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(107, 158, 255, 0.5);
+        }
+
         body {
             font-family: 'Latin Modern Roman', 'Computer Modern', 'Times New Roman', serif;
             background: #000;
             color: #e0e0e0;
             line-height: 1.6;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         #math-background {
@@ -47,27 +75,28 @@
 
         .formula {
             position: absolute;
-            color: rgba(100, 150, 255, 0.25);
+            color: rgba(100, 150, 255, 0.15);
             pointer-events: none;
             white-space: nowrap;
-            animation: fadeInOut 10s ease-in-out infinite;
-            font-size: 18px;
+            animation: fadeInOut 12s ease-in-out infinite;
+            font-size: 16px;
+            text-shadow: 0 0 8px rgba(100, 150, 255, 0.3);
         }
 
         @keyframes fadeInOut {
             0% {
                 opacity: 0;
-                transform: translateY(20px) scale(0.8);
+                transform: translateY(30px) scale(0.9);
             }
-            15% {
-                opacity: 0.5;
+            20% {
+                opacity: 0.6;
             }
-            85% {
-                opacity: 0.5;
+            80% {
+                opacity: 0.6;
             }
             100% {
                 opacity: 0;
-                transform: translateY(-20px) scale(1.1);
+                transform: translateY(-30px) scale(1.05);
             }
         }
 
@@ -155,8 +184,15 @@
             font-weight: 400;
         }
 
-        .contact-links a:hover {
+        .contact-links a:hover,
+        .contact-links a:focus {
             color: #8bb4ff;
+            outline: none;
+        }
+
+        .contact-links a:focus-visible {
+            outline: 2px solid #6b9eff;
+            outline-offset: 2px;
         }
 
         .skip-link {
@@ -165,6 +201,17 @@
             font-size: 0.95rem;
             margin-bottom: 30px;
             display: inline-block;
+        }
+
+        .skip-link:hover,
+        .skip-link:focus {
+            color: #8bb4ff;
+            outline: none;
+        }
+
+        .skip-link:focus-visible {
+            outline: 2px solid #6b9eff;
+            outline-offset: 2px;
         }
 
         .section-title {
@@ -187,6 +234,11 @@
 
         .project:hover {
             border-color: rgba(100, 150, 255, 0.3);
+        }
+
+        .project:focus-within {
+            border-color: rgba(100, 150, 255, 0.4);
+            outline: none;
         }
 
         .project h3 {
@@ -225,6 +277,13 @@
             border: 1px solid rgba(107, 158, 255, 0.2);
         }
 
+        .tag:hover,
+        .tag:focus {
+            background: rgba(107, 158, 255, 0.25);
+            border-color: rgba(107, 158, 255, 0.4);
+            outline: none;
+        }
+
         .project-links {
             margin-top: 20px;
         }
@@ -236,8 +295,15 @@
             font-size: 0.95rem;
         }
 
-        .project-links a:hover {
+        .project-links a:hover,
+        .project-links a:focus {
             color: #8bb4ff;
+            outline: none;
+        }
+
+        .project-links a:focus-visible {
+            outline: 2px solid #6b9eff;
+            outline-offset: 2px;
         }
 
         .technologies-section {
@@ -246,10 +312,13 @@
             padding: 40px;
             border-radius: 8px;
             border: 1px solid rgba(100, 150, 255, 0.1);
+            position: relative;
+            overflow: hidden;
         }
 
         .tech-category {
-            margin-bottom: 40px;
+            margin-bottom: 50px;
+            position: relative;
         }
 
         .tech-category:last-child {
@@ -259,124 +328,128 @@
         .tech-category h3 {
             color: #6b9eff;
             font-size: 1.3rem;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             font-weight: 400;
+            display: inline-block;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .tech-category h3::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 70%;
+            background: linear-gradient(180deg, #6b9eff 0%, transparent 100%);
+            border-radius: 2px;
         }
 
         .tech-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
             margin-top: 20px;
+            position: relative;
         }
 
         .tech-item {
-            background: linear-gradient(135deg, rgba(107, 158, 255, 0.1) 0%, rgba(107, 158, 255, 0.05) 100%);
-            padding: 18px 20px;
-            border-radius: 8px;
+            background: rgba(107, 158, 255, 0.05);
+            padding: 14px 22px;
+            border-radius: 25px;
             color: #6b9eff;
-            font-size: 0.95rem;
-            border: 1px solid rgba(107, 158, 255, 0.2);
+            font-size: 0.9rem;
+            border: 1px solid rgba(107, 158, 255, 0.15);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: default;
             position: relative;
             overflow: hidden;
+            opacity: 0;
+            animation: fadeInUp 0.5s ease-out forwards;
+        }
+
+        .tech-category:nth-child(1) .tech-item:nth-child(1) { animation-delay: 0.05s; }
+        .tech-category:nth-child(1) .tech-item:nth-child(2) { animation-delay: 0.1s; }
+        .tech-category:nth-child(1) .tech-item:nth-child(3) { animation-delay: 0.15s; }
+        .tech-category:nth-child(1) .tech-item:nth-child(4) { animation-delay: 0.2s; }
+        
+        .tech-category:nth-child(2) .tech-item:nth-child(1) { animation-delay: 0.25s; }
+        .tech-category:nth-child(2) .tech-item:nth-child(2) { animation-delay: 0.3s; }
+        .tech-category:nth-child(2) .tech-item:nth-child(3) { animation-delay: 0.35s; }
+        .tech-category:nth-child(2) .tech-item:nth-child(4) { animation-delay: 0.4s; }
+        
+        .tech-category:nth-child(3) .tech-item:nth-child(1) { animation-delay: 0.45s; }
+        .tech-category:nth-child(3) .tech-item:nth-child(2) { animation-delay: 0.5s; }
+        .tech-category:nth-child(3) .tech-item:nth-child(3) { animation-delay: 0.55s; }
+        .tech-category:nth-child(3) .tech-item:nth-child(4) { animation-delay: 0.6s; }
+        .tech-category:nth-child(3) .tech-item:nth-child(5) { animation-delay: 0.65s; }
+        
+        .tech-category:nth-child(4) .tech-item:nth-child(1) { animation-delay: 0.7s; }
+        .tech-category:nth-child(4) .tech-item:nth-child(2) { animation-delay: 0.75s; }
+        .tech-category:nth-child(4) .tech-item:nth-child(3) { animation-delay: 0.8s; }
+        .tech-category:nth-child(4) .tech-item:nth-child(4) { animation-delay: 0.85s; }
+        .tech-category:nth-child(4) .tech-item:nth-child(5) { animation-delay: 0.9s; }
+        .tech-category:nth-child(4) .tech-item:nth-child(6) { animation-delay: 0.95s; }
+        
+        .tech-category:nth-child(5) .tech-item:nth-child(1) { animation-delay: 1.0s; }
+        .tech-category:nth-child(5) .tech-item:nth-child(2) { animation-delay: 1.05s; }
+        .tech-category:nth-child(5) .tech-item:nth-child(3) { animation-delay: 1.1s; }
+        
+        .tech-category:nth-child(6) .tech-item:nth-child(1) { animation-delay: 1.15s; }
+        .tech-category:nth-child(6) .tech-item:nth-child(2) { animation-delay: 1.2s; }
+        
+        .tech-category:nth-child(7) .tech-item:nth-child(1) { animation-delay: 1.25s; }
+        .tech-category:nth-child(7) .tech-item:nth-child(2) { animation-delay: 1.3s; }
+        .tech-category:nth-child(7) .tech-item:nth-child(3) { animation-delay: 1.35s; }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .tech-item::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(107, 158, 255, 0.2), transparent);
-            transition: left 0.5s;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(107, 158, 255, 0.3) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease-out, height 0.6s ease-out;
+            z-index: 0;
         }
 
         .tech-item:hover::before {
-            left: 100%;
+            width: 200px;
+            height: 200px;
         }
 
         .tech-item:hover {
-            background: rgba(107, 158, 255, 0.2);
+            background: rgba(107, 158, 255, 0.12);
             border-color: rgba(107, 158, 255, 0.5);
-            transform: translateY(-4px) scale(1.02);
-            box-shadow: 0 8px 20px rgba(107, 158, 255, 0.3);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(107, 158, 255, 0.2),
+                        0 0 0 1px rgba(107, 158, 255, 0.3);
+            z-index: 1;
+        }
+
+        .tech-item:focus-within {
+            outline: 2px solid #6b9eff;
+            outline-offset: 2px;
         }
 
         .tech-icon {
-            font-size: 1.5rem;
-            margin-right: 10px;
-            vertical-align: middle;
-        }
-
-        .technologies-section {
-            margin: 60px 0;
-            background: rgba(20, 20, 30, 0.6);
-            padding: 40px;
-            border-radius: 8px;
-            border: 1px solid rgba(100, 150, 255, 0.1);
-        }
-
-        .tech-category {
-            margin-bottom: 40px;
-        }
-
-        .tech-category:last-child {
-            margin-bottom: 0;
-        }
-
-        .tech-category h3 {
-            color: #6b9eff;
-            font-size: 1.3rem;
-            margin-bottom: 20px;
-            font-weight: 400;
-        }
-
-        .tech-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .tech-item {
-            background: linear-gradient(135deg, rgba(107, 158, 255, 0.1) 0%, rgba(107, 158, 255, 0.05) 100%);
-            padding: 18px 20px;
-            border-radius: 8px;
-            color: #6b9eff;
-            font-size: 0.95rem;
-            border: 1px solid rgba(107, 158, 255, 0.2);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .tech-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(107, 158, 255, 0.2), transparent);
-            transition: left 0.5s;
-        }
-
-        .tech-item:hover::before {
-            left: 100%;
-        }
-
-        .tech-item:hover {
-            background: rgba(107, 158, 255, 0.2);
-            border-color: rgba(107, 158, 255, 0.5);
-            transform: translateY(-4px) scale(1.02);
-            box-shadow: 0 8px 20px rgba(107, 158, 255, 0.3);
-        }
-
-        .tech-icon {
-            font-size: 1.5rem;
-            margin-right: 10px;
+            margin-right: 8px;
             vertical-align: middle;
         }
 
@@ -386,6 +459,23 @@
             border-top: 1px solid #333;
             color: #666;
             font-size: 0.9rem;
+            text-align: center;
+        }
+
+        footer a {
+            color: #6b9eff;
+            text-decoration: none;
+        }
+
+        footer a:hover,
+        footer a:focus {
+            color: #8bb4ff;
+            outline: none;
+        }
+
+        footer a:focus-visible {
+            outline: 2px solid #6b9eff;
+            outline-offset: 2px;
         }
 
         .video-placeholder {
@@ -397,9 +487,9 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #555;
-            border: 1px solid rgba(100, 150, 255, 0.1);
+            color: #666;
             font-style: italic;
+            border: 1px dashed rgba(100, 150, 255, 0.2);
         }
 
         @media (max-width: 768px) {
@@ -423,13 +513,33 @@
                 font-size: 1.2rem;
             }
         }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+
+            .formula {
+                display: none;
+            }
+
+            .tech-item {
+                opacity: 1 !important;
+                animation: none !important;
+            }
+        }
     </style>
 </head>
 <body>
-    <div id="math-background"></div>
+    <div id="math-background" aria-hidden="true"></div>
     
     <div class="container">
-        <header>
+        <header role="banner">
             <div class="latex-title">
                 \title{<span class="content">Portfolio Website</span>}
             </div>
@@ -457,156 +567,12 @@
             
             <div class="contact-links">
                 <a href="https://github.com/Bencode12">github: @Bencode12</a>
-                <a href="/cdn-cgi/l/email-protection#f38a9c8681dd969e929a9fb3968b929e839f96dd909c9e">email: your.email [at] example (dot) com</a>
+                <span style="color: #6b9eff;">email: benjaminas (dot) petronis [at] gmail (dot) com</span>
             </div>
         </header>
 
-                    <div class="tech-item"><span class="tech-icon">⚙️</span>Rust</div>
-                    <div class="tech-item"><span class="tech-icon">🦀</span>Assembly (x86/ARM)</div>
-                    <div class="tech-item"><span class="tech-icon">🔩</span>Zig</div>
-                </div>
-            </div>
-
-            <div class="tech-category">
-                <h3>🌐 Web Technologies</h3>
-                <div class="tech-grid">
-                    <div class="tech-item"><span class="tech-icon">🌍</span>HTML5 & CSS3</div>
-                    <div class="tech-item"><span class="tech-icon">⚡</span>JavaScript (ES6+)</div>
-                    <div class="tech-item"><span class="tech-icon">🎨</span>PHP</div>
-                    <div class="tech-item"><span class="tech-icon">💾</span>SQL</div>
-                </div>
-            </div>
-
-            <div class="tech-category">
-                <h3>📊 Scientific Computing</h3>
-                <div class="tech-grid">
-                    <div class="tech-item"><span class="tech-icon">🐍</span>Python</div>
-                    <div class="tech-item"><span class="tech-icon">📈</span>MATLAB</div>
-                    <div class="tech-item"><span class="tech-icon">🔢</span>GNU Octave</div>
-                    <div class="tech-item"><span class="tech-icon">📉</span>R</div>
-                    <div class="tech-item"><span class="tech-icon">🔬</span>Spyder IDE</div>
-                </div>
-            </div>
-
-            <div class="tech-category">
-                <h3>☁️ Application Development</h3>
-                <div class="tech-grid">
-                    <div class="tech-item"><span class="tech-icon">☕</span>Java</div>
-                    <div class="tech-item"><span class="tech-icon">🚀</span>Swift</div>
-                    <div class="tech-item"><span class="tech-icon">🤖</span>Kotlin</div>
-                    <div class="tech-item"><span class="tech-icon">💎</span>Ruby</div>
-                    <div class="tech-item"><span class="tech-icon">🐹</span>Go</div>
-                    <div class="tech-item"><span class="tech-icon">🌙</span>Lua</div>
-                </div>
-            </div>
-
-            <div class="tech-category">
-                <h3>🎯 Design & Engineering Tools</h3>
-                <div class="tech-grid">
-                    <div class="tech-item"><span class="tech-icon">🎨</span>Figma</div>
-                    <div class="tech-item"><span class="tech-icon">🚀</span>OpenRocket</div>
-                    <div class="tech-item"><span class="tech-icon">⚙️</span>Fusion 360</div>
-                </div>
-            </div>
-
-            <div class="tech-category">
-                <h3>🧮 Functional & Academic</h3>
-                <div class="tech-grid">
-                    <div class="tech-item"><span class="tech-icon">🦎</span>Caml (OCaml)</div>
-                    <div class="tech-item"><span class="tech-icon">📝</span>YQL</div>
-                </div>
-            </div>
-
-            <div class="tech-category">
-                <h3>🎭 Esoteric & Experimental</h3>
-                <div class="tech-grid">
-                    <div class="tech-item"><span class="tech-icon">0️⃣1️⃣</span>Binary</div>
-                    <div class="tech-item"><span class="tech-icon">🧠</span>Brainfuck</div>
-                </div>
-            </div>
-
-            <div class="tech-category">
-                <h3>🐧 Operating Systems</h3>
-                <div class="tech-grid">
-                    <div class="tech-item"><span class="tech-icon">🐧</span>I use arch btw</div>
-                </div>
-            </div>
-        </div>
-
-
-                    <div class="tech-item"><span class="tech-icon">⚙️</span>Rust</div>
-                    <div class="tech-item"><span class="tech-icon">🦀</span>Assembly (x86/ARM)</div>
-                    <div class="tech-item"><span class="tech-icon">🔩</span>Zig</div>
-                </div>
-            </div>
-
-            <div class="tech-category">
-                <h3>🌐 Web Technologies</h3>
-                <div class="tech-grid">
-                    <div class="tech-item"><span class="tech-icon">🌍</span>HTML5 & CSS3</div>
-                    <div class="tech-item"><span class="tech-icon">⚡</span>JavaScript (ES6+)</div>
-                    <div class="tech-item"><span class="tech-icon">🎨</span>PHP</div>
-                    <div class="tech-item"><span class="tech-icon">💾</span>SQL</div>
-                </div>
-            </div>
-
-            <div class="tech-category">
-                <h3>📊 Scientific Computing</h3>
-                <div class="tech-grid">
-                    <div class="tech-item"><span class="tech-icon">🐍</span>Python</div>
-                    <div class="tech-item"><span class="tech-icon">📈</span>MATLAB</div>
-                    <div class="tech-item"><span class="tech-icon">🔢</span>GNU Octave</div>
-                    <div class="tech-item"><span class="tech-icon">📉</span>R</div>
-                    <div class="tech-item"><span class="tech-icon">🔬</span>Spyder IDE</div>
-                </div>
-            </div>
-
-            <div class="tech-category">
-                <h3>☁️ Application Development</h3>
-                <div class="tech-grid">
-                    <div class="tech-item"><span class="tech-icon">☕</span>Java</div>
-                    <div class="tech-item"><span class="tech-icon">🚀</span>Swift</div>
-                    <div class="tech-item"><span class="tech-icon">🤖</span>Kotlin</div>
-                    <div class="tech-item"><span class="tech-icon">💎</span>Ruby</div>
-                    <div class="tech-item"><span class="tech-icon">🐹</span>Go</div>
-                    <div class="tech-item"><span class="tech-icon">🌙</span>Lua</div>
-                </div>
-            </div>
-
-            <div class="tech-category">
-                <h3>🎯 Design & Engineering Tools</h3>
-                <div class="tech-grid">
-                    <div class="tech-item"><span class="tech-icon">🎨</span>Figma</div>
-                    <div class="tech-item"><span class="tech-icon">��</span>OpenRocket</div>
-                    <div class="tech-item"><span class="tech-icon">⚙️</span>Fusion 360</div>
-                </div>
-            </div>
-
-            <div class="tech-category">
-                <h3>🧮 Functional & Academic</h3>
-                <div class="tech-grid">
-                    <div class="tech-item"><span class="tech-icon">🦎</span>Caml (OCaml)</div>
-                    <div class="tech-item"><span class="tech-icon">📝</span>YQL</div>
-                </div>
-            </div>
-
-            <div class="tech-category">
-                <h3>🎭 Esoteric & Experimental</h3>
-                <div class="tech-grid">
-                    <div class="tech-item"><span class="tech-icon">0️⃣1️⃣</span>Binary</div>
-                    <div class="tech-item"><span class="tech-icon">🧠</span>Brainfuck</div>
-                </div>
-            </div>
-
-            <div class="tech-category">
-                <h3>🐧 Operating Systems</h3>
-                <div class="tech-grid">
-                    <div class="tech-item"><span class="tech-icon">🐧</span>I use arch btw</div>
-                </div>
-            </div>
-        </div>
-
-        <h2 class="section-title" id="research">Projects & Research</h2>
+        <main id="main-content" role="main">
+            <h2 class="section-title" id="research">Projects & Research</h2>
 
         <div class="project">
             <h3>Custom Programming Language</h3>
@@ -628,8 +594,8 @@
             </div>
             
             <div class="project-links">
-                <a href="custom-language.html">[View Project Page]</a>
-                <a href="https://github.com/Bencode12">[View on GitHub]</a>
+                <a href="custom-language.html" aria-label="View Custom Programming Language project details">[View Project Page]</a>
+                <a href="https://github.com/Bencode12" target="_blank" rel="noopener noreferrer" aria-label="View Custom Programming Language on GitHub (opens in new tab)">[View on GitHub]</a>
             </div>
         </div>
 
@@ -638,7 +604,7 @@
             <h3>Chemistry Terminal Tool</h3>
             <p class="project-meta">computational chemistry</p>
             
-            <div class="video-placeholder">
+            <div class="video-placeholder" role="img" aria-label="Screenshot showing chemical calculations in terminal interface">
                 [Chemical calculations in terminal]
             </div>
             
@@ -663,14 +629,11 @@
             </div>
         </div>
 
-
-
-
         <div class="project">
             <h3>Surveillance System</h3>
             <p class="project-meta">computer vision • security</p>
             
-            <div class="video-placeholder">
+            <div class="video-placeholder" role="img" aria-label="Screenshot showing surveillance system architecture">
                 [Surveillance system architecture]
             </div>
             
@@ -691,7 +654,7 @@
             </div>
             
             <div class="project-links">
-                <a href="https://github.com/Bencode12">[View on GitHub]</a>
+                <a href="https://github.com/Bencode12" target="_blank" rel="noopener noreferrer" aria-label="View Surveillance System on GitHub (opens in new tab)">[View on GitHub]</a>
             </div>
         </div>
 
@@ -699,7 +662,7 @@
             <h3>Penetration Testing Terminal</h3>
             <p class="project-meta">cybersecurity</p>
             
-            <div class="video-placeholder">
+            <div class="video-placeholder" role="img" aria-label="Screenshot showing penetration testing terminal interface">
                 [Pentesting terminal interface]
             </div>
             
@@ -720,7 +683,7 @@
             </div>
             
             <div class="project-links">
-                <a href="https://github.com/Bencode12">[View on GitHub]</a>
+                <a href="https://github.com/Bencode12" target="_blank" rel="noopener noreferrer" aria-label="View Penetration Testing Terminal on GitHub (opens in new tab)">[View on GitHub]</a>
             </div>
         </div>
 
@@ -793,95 +756,524 @@
         </div>
 
 
-        <h2 class="section-title" id="technologies">Technologies & Programming Languages</h2>
+        <h2 class="section-title" id="technologies">Technologies and Languages</h2>
 
-        <div class="technologies-section">
+        <div class="tech-showcase-container">
             <p style="color: #b0b0b0; line-height: 1.8; margin-bottom: 30px; font-size: 1.05rem;">
-                Proficient in a diverse range of programming languages, tools, and technologies—from systems programming to web development, 
-                mathematical computation to creative design:
+                Comprehensive technical proficiency across systems programming, web development, scientific computing, and specialized domains.
             </p>
 
-            <div class="tech-category">
-                <h3>⚡ Systems & Low-Level</h3>
-                <div class="tech-grid">
-                    <div class="tech-item"><span class="tech-icon">🔧</span>C</div>
-                    <div class="tech-item"><span class="tech-icon">⚙️</span>Rust</div>
-                    <div class="tech-item"><span class="tech-icon">🦀</span>Assembly (x86/ARM)</div>
-                    <div class="tech-item"><span class="tech-icon">🔩</span>Zig</div>
+            <div class="tech-bento-grid">
+                <!-- Systems & Low-Level -->
+                <div class="tech-card card-large">
+                    <div class="card-header">
+                        <span class="card-category">Systems & Low-Level</span>
+                    </div>
+                    <div class="tech-items">
+                        <div class="tech-badge" data-tech="c">
+                            <span class="tech-name">C</span>
+                            <div class="tech-tooltip">
+                                <div class="tooltip-content">
+                                    <strong>Systems Programming</strong>
+                                    <p>Memory management, pointers, embedded systems</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tech-badge" data-tech="rust">
+                            <span class="tech-name">Rust</span>
+                            <div class="tech-tooltip">
+                                <div class="tooltip-content">
+                                    <strong>Memory-Safe Systems</strong>
+                                    <p>Ownership model, zero-cost abstractions, concurrency</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tech-badge" data-tech="assembly">
+                            <span class="tech-name">Assembly (x86/ARM)</span>
+                            <div class="tech-tooltip">
+                                <div class="tooltip-content">
+                                    <strong>Low-Level Architecture</strong>
+                                    <p>Register operations, instruction sets, optimization</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tech-badge" data-tech="zig">
+                            <span class="tech-name">Zig</span>
+                            <div class="tech-tooltip">
+                                <div class="tooltip-content">
+                                    <strong>Modern Systems Language</strong>
+                                    <p>Compile-time execution, manual memory control</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="tech-category">
-                <h3>🌐 Web Technologies</h3>
-                <div class="tech-grid">
-                    <div class="tech-item"><span class="tech-icon">🌍</span>HTML5 & CSS3</div>
-                    <div class="tech-item"><span class="tech-icon">⚡</span>JavaScript (ES6+)</div>
-                    <div class="tech-item"><span class="tech-icon">🎨</span>PHP</div>
-                    <div class="tech-item"><span class="tech-icon">💾</span>SQL</div>
+                <!-- Web Technologies -->
+                <div class="tech-card card-medium">
+                    <div class="card-header">
+                        <span class="card-category">Web Technologies</span>
+                    </div>
+                    <div class="tech-items">
+                        <div class="tech-badge" data-tech="html">
+                            <span class="tech-name">HTML5 & CSS3</span>
+                            <div class="tech-tooltip">
+                                <div class="tooltip-content">
+                                    <strong>Frontend Foundation</strong>
+                                    <p>Semantic markup, responsive design, animations</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tech-badge" data-tech="javascript">
+                            <span class="tech-name">JavaScript (ES6+)</span>
+                            <div class="tech-tooltip">
+                                <div class="tooltip-content">
+                                    <strong>Dynamic Web Development</strong>
+                                    <p>Async/await, modules, DOM manipulation</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tech-badge" data-tech="php">
+                            <span class="tech-name">PHP</span>
+                            <div class="tech-tooltip">
+                                <div class="tooltip-content">
+                                    <strong>Server-Side Scripting</strong>
+                                    <p>Web applications, database integration</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tech-badge" data-tech="sql">
+                            <span class="tech-name">SQL</span>
+                            <div class="tech-tooltip">
+                                <div class="tooltip-content">
+                                    <strong>Database Management</strong>
+                                    <p>Query optimization, relational design, transactions</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="tech-category">
-                <h3>📊 Scientific Computing</h3>
-                <div class="tech-grid">
-                    <div class="tech-item"><span class="tech-icon">🐍</span>Python</div>
-                    <div class="tech-item"><span class="tech-icon">📈</span>MATLAB</div>
-                    <div class="tech-item"><span class="tech-icon">🔢</span>GNU Octave</div>
-                    <div class="tech-item"><span class="tech-icon">📉</span>R</div>
-                    <div class="tech-item"><span class="tech-icon">🔬</span>Spyder IDE</div>
+                <!-- Scientific Computing -->
+                <div class="tech-card card-medium">
+                    <div class="card-header">
+                        <span class="card-category">Scientific Computing</span>
+                    </div>
+                    <div class="tech-items">
+                        <div class="tech-badge" data-tech="python">
+                            <span class="tech-name">Python</span>
+                            <div class="tech-tooltip">
+                                <div class="tooltip-content">
+                                    <strong>Numerical Computing</strong>
+                                    <p>NumPy, SciPy, data analysis, automation</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tech-badge" data-tech="matlab">
+                            <span class="tech-name">MATLAB</span>
+                            <div class="tech-tooltip">
+                                <div class="tooltip-content">
+                                    <strong>Mathematical Modeling</strong>
+                                    <p>Matrix operations, simulations, visualization</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tech-badge" data-tech="octave">
+                            <span class="tech-name">GNU Octave</span>
+                            <div class="tech-tooltip">
+                                <div class="tooltip-content">
+                                    <strong>Open-Source MATLAB Alternative</strong>
+                                    <p>Numerical methods, linear algebra</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tech-badge" data-tech="r">
+                            <span class="tech-name">R</span>
+                            <div class="tech-tooltip">
+                                <div class="tooltip-content">
+                                    <strong>Statistical Computing</strong>
+                                    <p>Data analysis, visualization, statistical modeling</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tech-badge" data-tech="spyder">
+                            <span class="tech-name">Spyder IDE</span>
+                            <div class="tech-tooltip">
+                                <div class="tooltip-content">
+                                    <strong>Scientific Python IDE</strong>
+                                    <p>Interactive development, variable explorer</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="tech-category">
-                <h3>☁️ Application Development</h3>
-                <div class="tech-grid">
-                    <div class="tech-item"><span class="tech-icon">☕</span>Java</div>
-                    <div class="tech-item"><span class="tech-icon">🚀</span>Swift</div>
-                    <div class="tech-item"><span class="tech-icon">🤖</span>Kotlin</div>
-                    <div class="tech-item"><span class="tech-icon">💎</span>Ruby</div>
-                    <div class="tech-item"><span class="tech-icon">🐹</span>Go</div>
-                    <div class="tech-item"><span class="tech-icon">🌙</span>Lua</div>
+                <!-- Application Development -->
+                <div class="tech-card card-large">
+                    <div class="card-header">
+                        <span class="card-category">Application Development</span>
+                    </div>
+                    <div class="tech-items">
+                        <div class="tech-badge" data-tech="java">
+                            <span class="tech-name">Java</span>
+                            <div class="tech-tooltip">
+                                <div class="tooltip-content">
+                                    <strong>Enterprise Applications</strong>
+                                    <p>OOP, JVM ecosystem, Android development</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tech-badge" data-tech="swift">
+                            <span class="tech-name">Swift</span>
+                            <div class="tech-tooltip">
+                                <div class="tooltip-content">
+                                    <strong>iOS/macOS Development</strong>
+                                    <p>Modern syntax, safety features, Apple ecosystem</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tech-badge" data-tech="kotlin">
+                            <span class="tech-name">Kotlin</span>
+                            <div class="tech-tooltip">
+                                <div class="tooltip-content">
+                                    <strong>Modern JVM Language</strong>
+                                    <p>Null safety, coroutines, Android development</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tech-badge" data-tech="ruby">
+                            <span class="tech-name">Ruby</span>
+                            <div class="tech-tooltip">
+                                <div class="tooltip-content">
+                                    <strong>Rapid Prototyping</strong>
+                                    <p>Metaprogramming, Rails framework, DSLs</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tech-badge" data-tech="go">
+                            <span class="tech-name">Go</span>
+                            <div class="tech-tooltip">
+                                <div class="tooltip-content">
+                                    <strong>Concurrent Systems</strong>
+                                    <p>Goroutines, channels, microservices</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tech-badge" data-tech="lua">
+                            <span class="tech-name">Lua</span>
+                            <div class="tech-tooltip">
+                                <div class="tooltip-content">
+                                    <strong>Embedded Scripting</strong>
+                                    <p>Game engines, configuration, lightweight runtime</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="tech-category">
-                <h3>🎯 Design & Engineering Tools</h3>
-                <div class="tech-grid">
-                    <div class="tech-item"><span class="tech-icon">🎨</span>Figma</div>
-                    <div class="tech-item"><span class="tech-icon">🚀</span>OpenRocket</div>
-                    <div class="tech-item"><span class="tech-icon">⚙️</span>Fusion 360</div>
+                <!-- Design & Engineering -->
+                <div class="tech-card card-small">
+                    <div class="card-header">
+                        <span class="card-category">Design & Engineering</span>
+                    </div>
+                    <div class="tech-items">
+                        <div class="tech-badge" data-tech="figma">
+                            <span class="tech-name">Figma</span>
+                            <div class="tech-tooltip">
+                                <div class="tooltip-content">
+                                    <strong>UI/UX Design</strong>
+                                    <p>Prototyping, design systems, collaboration</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tech-badge" data-tech="openrocket">
+                            <span class="tech-name">OpenRocket</span>
+                            <div class="tech-tooltip">
+                                <div class="tooltip-content">
+                                    <strong>Rocket Simulation</strong>
+                                    <p>Flight dynamics, stability analysis, optimization</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tech-badge" data-tech="fusion">
+                            <span class="tech-name">Fusion 360</span>
+                            <div class="tech-tooltip">
+                                <div class="tooltip-content">
+                                    <strong>CAD/CAM Design</strong>
+                                    <p>3D modeling, parametric design, manufacturing</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="tech-category">
-                <h3>🧮 Functional & Academic</h3>
-                <div class="tech-grid">
-                    <div class="tech-item"><span class="tech-icon">��</span>Caml (OCaml)</div>
-                    <div class="tech-item"><span class="tech-icon">📝</span>YQL</div>
+                <!-- Functional & Academic -->
+                <div class="tech-card card-small">
+                    <div class="card-header">
+                        <span class="card-category">Functional & Academic</span>
+                    </div>
+                    <div class="tech-items">
+                        <div class="tech-badge" data-tech="ocaml">
+                            <span class="tech-name">Caml (OCaml)</span>
+                            <div class="tech-tooltip">
+                                <div class="tooltip-content">
+                                    <strong>Functional Programming</strong>
+                                    <p>Type inference, pattern matching, theorem proving</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tech-badge" data-tech="yql">
+                            <span class="tech-name">YQL</span>
+                            <div class="tech-tooltip">
+                                <div class="tooltip-content">
+                                    <strong>Query Language</strong>
+                                    <p>Data retrieval, API integration, web services</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="tech-category">
-                <h3>🎭 Esoteric & Experimental</h3>
-                <div class="tech-grid">
-                    <div class="tech-item"><span class="tech-icon">0️⃣1️⃣</span>Binary</div>
-                    <div class="tech-item"><span class="tech-icon">🧠</span>Brainfuck</div>
-                </div>
-            </div>
-
-            <div class="tech-category">
-                <h3>🐧 Operating Systems</h3>
-                <div class="tech-grid">
-                    <div class="tech-item"><span class="tech-icon">🐧</span>I use arch btw</div>
+                <!-- Esoteric & Experimental -->
+                <div class="tech-card card-special">
+                    <div class="card-header">
+                        <span class="card-category">Esoteric & Experimental</span>
+                    </div>
+                    <div class="tech-items">
+                        <div class="tech-badge" data-tech="binary">
+                            <span class="tech-name">Binary</span>
+                            <div class="tech-tooltip">
+                                <div class="tooltip-content">
+                                    <strong>Machine Code</strong>
+                                    <p>Bitwise operations, low-level computation</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tech-badge" data-tech="brainfuck">
+                            <span class="tech-name">Brainfuck</span>
+                            <div class="tech-tooltip">
+                                <div class="tooltip-content">
+                                    <strong>Minimalist Turing-Complete Language</strong>
+                                    <p>8 commands, pointer manipulation, computational theory</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tech-badge esoteric" data-tech="arch">
+                            <span class="tech-name">I use arch btw</span>
+                            <div class="tech-tooltip">
+                                <div class="tooltip-content">
+                                    <strong>Linux Distribution Meme</strong>
+                                    <p>Rolling release, AUR, DIY philosophy, community culture</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <footer>
+        <style>
+            .tech-showcase-container {
+                margin: 60px 0;
+            }
+
+            .tech-bento-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+                margin-top: 30px;
+            }
+
+            .tech-card {
+                background: rgba(20, 20, 30, 0.6);
+                border: 1px solid rgba(107, 158, 255, 0.15);
+                border-radius: 12px;
+                padding: 24px;
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                position: relative;
+                overflow: hidden;
+            }
+
+            .tech-card::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 3px;
+                background: linear-gradient(90deg, #6b9eff 0%, transparent 100%);
+                opacity: 0;
+                transition: opacity 0.3s ease-out;
+            }
+
+            .tech-card:hover {
+                border-color: rgba(107, 158, 255, 0.4);
+                transform: translateY(-4px);
+                box-shadow: 0 12px 40px rgba(107, 158, 255, 0.15);
+            }
+
+            .tech-card:hover::before {
+                opacity: 1;
+            }
+
+            .card-large {
+                grid-column: span 2;
+            }
+
+            .card-medium {
+                grid-column: span 1;
+            }
+
+            .card-small {
+                grid-column: span 1;
+            }
+
+            .card-special {
+                grid-column: span 3;
+                background: linear-gradient(135deg, rgba(20, 20, 30, 0.8) 0%, rgba(30, 20, 40, 0.6) 100%);
+            }
+
+            .card-header {
+                margin-bottom: 20px;
+                padding-bottom: 12px;
+                border-bottom: 1px solid rgba(107, 158, 255, 0.1);
+            }
+
+            .card-category {
+                color: #6b9eff;
+                font-size: 1.1rem;
+                font-weight: 600;
+                letter-spacing: 0.5px;
+            }
+
+            .tech-items {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            .tech-badge {
+                position: relative;
+                background: rgba(107, 158, 255, 0.08);
+                border: 1px solid rgba(107, 158, 255, 0.2);
+                border-radius: 20px;
+                padding: 10px 18px;
+                cursor: pointer;
+                transition: all 0.2s ease-out;
+            }
+
+            .tech-badge:hover {
+                background: rgba(107, 158, 255, 0.15);
+                border-color: rgba(107, 158, 255, 0.5);
+                transform: scale(1.05);
+            }
+
+            .tech-badge.esoteric {
+                background: rgba(150, 100, 255, 0.1);
+                border-color: rgba(150, 100, 255, 0.3);
+            }
+
+            .tech-badge.esoteric:hover {
+                background: rgba(150, 100, 255, 0.2);
+                border-color: rgba(150, 100, 255, 0.6);
+            }
+
+            .tech-name {
+                color: #6b9eff;
+                font-size: 0.9rem;
+                font-weight: 500;
+            }
+
+            .tech-badge.esoteric .tech-name {
+                color: #a78bfa;
+            }
+
+            /* Tooltip */
+            .tech-tooltip {
+                position: absolute;
+                bottom: calc(100% + 10px);
+                left: 50%;
+                transform: translateX(-50%) scale(0.9);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.2s ease-out;
+                z-index: 100;
+                pointer-events: none;
+            }
+
+            .tech-badge:hover .tech-tooltip {
+                opacity: 1;
+                visibility: visible;
+                transform: translateX(-50%) scale(1);
+            }
+
+            .tooltip-content {
+                background: rgba(10, 10, 15, 0.95);
+                border: 1px solid rgba(107, 158, 255, 0.3);
+                border-radius: 8px;
+                padding: 12px 16px;
+                min-width: 220px;
+                max-width: 280px;
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+                backdrop-filter: blur(10px);
+            }
+
+            .tooltip-content strong {
+                display: block;
+                color: #6b9eff;
+                font-size: 0.85rem;
+                margin-bottom: 6px;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+            }
+
+            .tooltip-content p {
+                color: #b0b0b0;
+                font-size: 0.8rem;
+                line-height: 1.5;
+                margin: 0;
+            }
+
+            /* Responsive */
+            @media (max-width: 1024px) {
+                .tech-bento-grid {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+
+                .card-large,
+                .card-special {
+                    grid-column: span 2;
+                }
+            }
+
+            @media (max-width: 768px) {
+                .tech-bento-grid {
+                    grid-template-columns: 1fr;
+                }
+
+                .card-large,
+                .card-medium,
+                .card-small,
+                .card-special {
+                    grid-column: span 1;
+                }
+            }
+
+            @media (prefers-reduced-motion: reduce) {
+                .tech-card,
+                .tech-badge,
+                .tech-tooltip {
+                    transition: none !important;
+                }
+            }
+        </style>
+        </main>
+
+        <footer role="contentinfo">
             <p>
                 High School Student • Self-Taught Pure Mathematician • Software Developer<br>
                 <a href="https://github.com/Bencode12" style="color: #6b9eff; text-decoration: none;">GitHub: @Bencode12</a> · 
-                email: your.email [at] example (dot) com · 
+                <span style="color: #6b9eff;">email: benjaminas (dot) petronis [at] gmail (dot) com</span> · 
                 <a href="#" style="color: #6b9eff; text-decoration: none;">Back to top</a>
             </p>
         </footer>
@@ -893,7 +1285,7 @@
             const today = new Date();
             const dateStr = `${months[today.getMonth()]} ${today.getDate()}, ${today.getFullYear()}`;
             document.getElementById('current-date').textContent = dateStr;
-        });        });
+        });
 
         // Pure mathematics formulas in LaTeX
         const mathFormulas = [
@@ -988,7 +1380,7 @@
         ];
 
         const background = document.getElementById('math-background');
-        const maxFormulas = 20;
+        const maxFormulas = 30;
         let activeFormulas = [];
 
         function createFormula() {
@@ -1017,7 +1409,7 @@
             
             // Trigger MathJax to render this specific formula
             if (window.MathJax && window.MathJax.typesetPromise) {
-                window.MathJax.typesetPromise([formula]).catch((err) => console.log(err));
+                window.MathJax.typesetPromise([formula]).catch(() => {});
             }
             
             activeFormulas.push(formula);
@@ -1043,7 +1435,7 @@
                 setInterval(() => {
                     if (activeFormulas.length < maxFormulas) {                        createFormula();
                     }
-                }, 2000);
+                }, 1500);
             }, 500);
         });
     </script>
