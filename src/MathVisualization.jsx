@@ -224,7 +224,6 @@ const MathVisualization = () => {
 
 // Export for embedding
 window.MathVisualization = MathVisualization;
-window.ReactDOM = ReactDOM;
 
 // Auto-mount if container exists
 document.addEventListener('DOMContentLoaded', () => {
