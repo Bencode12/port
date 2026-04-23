@@ -36,21 +36,13 @@
             color: #fff;
         }
 
-        ::-webkit-scrollbar {
-            width: 10px;
+        html {
+            scrollbar-width: none;
+            -ms-overflow-style: none;
         }
 
-        ::-webkit-scrollbar-track {
-            background: #0a0a0a;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: rgba(107, 158, 255, 0.3);
-            border-radius: 5px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: rgba(107, 158, 255, 0.5);
+        html::-webkit-scrollbar {
+            display: none;
         }
 
         body {
@@ -58,9 +50,15 @@
             background: #000;
             color: #e0e0e0;
             line-height: 1.6;
-            overflow-x: hidden;
+            overflow-y: scroll;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+        }
+
+        body::-webkit-scrollbar {
+            display: none;
         }
 
         #math-background {
@@ -1437,5 +1435,90 @@
     <!-- React Components -->
     <script src="dist/orbiting-circles.js"></script>
     <script src="dist/math-viz.js"></script>
+
+    <!-- Rebound Animation and Book Section -->
+    <div id="rebound-section" style="
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        margin-top: 100px;
+    ">
+        <div id="book-container" style="
+            position: relative;
+            width: 80%;
+            max-width: 900px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        ">
+            <h2 style="
+                font-size: 2.5rem;
+                color: #6b9eff;
+                text-align: center;
+                margin-bottom: 30px;
+                font-family: 'Latin Modern Roman', serif;
+            ">My Mathematical Work</h2>
+            <div style="
+                background: rgba(20, 20, 30, 0.8);
+                border: 1px solid rgba(107, 158, 255, 0.3);
+                border-radius: 15px;
+                padding: 40px;
+                backdrop-filter: blur(10px);
+                box-shadow: 0 0 60px rgba(107, 158, 255, 0.2);
+            ">
+                <p style="
+                    color: #e0e0e0;
+                    line-height: 1.8;
+                    font-size: 1.1rem;
+                    margin-bottom: 30px;
+                    text-align: center;
+                ">
+                    A comprehensive exploration of pure mathematics, featuring original proofs and insights in algebraic topology, category theory, and number theory.
+                </p>
+                <a href="Book.pdf" target="_blank" style="
+                    display: inline-block;
+                    padding: 15px 40px;
+                    background: linear-gradient(135deg, rgba(107, 158, 255, 0.2), rgba(107, 158, 255, 0.1));
+                    border: 2px solid #6b9eff;
+                    border-radius: 8px;
+                    color: #6b9eff;
+                    text-decoration: none;
+                    font-size: 1.2rem;
+                    font-weight: bold;
+                    transition: all 0.3s ease;
+                    cursor: pointer;
+                    text-align: center;
+                    width: 100%;
+                " onmouseover="this.style.background='linear-gradient(135deg, rgba(107, 158, 255, 0.4), rgba(107, 158, 255, 0.2))'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 10px 30px rgba(107, 158, 255, 0.4)'" onmouseout="this.style.background='linear-gradient(135deg, rgba(107, 158, 255, 0.2), rgba(107, 158, 255, 0.1))'; this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                    📖 View Book
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Rebound animation on scroll
+        const reboundSection = document.getElementById('rebound-section');
+        const bookContainer = document.getElementById('book-container');
+        let hasAnimated = false;
+
+        function checkScroll() {
+            const sectionTop = reboundSection.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+            
+            if (sectionTop < windowHeight * 0.75 && !hasAnimated) {
+                hasAnimated = true;
+                bookContainer.style.opacity = '1';
+                bookContainer.style.transform = 'translateY(0)';
+            }
+        }
+
+        window.addEventListener('scroll', checkScroll);
+        window.addEventListener('load', checkScroll);
+    </script>
 </body>
 </html>
